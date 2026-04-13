@@ -45,8 +45,63 @@ body::before{
   pointer-events:none;z-index:0;
 }
 
-/* HEADER */
-header{
+/* LOGIN SCREEN */
+#login-screen{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0;
+}
+#login-screen::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 0%, rgba(0,229,160,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 100%, rgba(91,156,246,0.06) 0%, transparent 65%);
+  pointer-events:none;
+}
+.login-box{
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:20px;
+  padding:40px 36px;
+  width:100%;max-width:380px;
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+  position:relative;z-index:1;
+}
+.login-logo{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:28px;justify-content:center;
+}
+.login-logo-icon{
+  width:42px;height:42px;
+  background:linear-gradient(135deg,var(--accent),var(--gcash));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.login-logo-text{font-size:1.3rem;font-weight:800;letter-spacing:-.03em}
+.login-logo-text span{color:var(--accent)}
+.login-box h2{text-align:center;font-size:1rem;color:var(--text2);margin-bottom:24px;font-weight:500}
+.login-field{margin-bottom:16px}
+.login-field label{display:block;font-size:.8rem;color:var(--text2);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.login-field input{
+  width:100%;padding:12px 16px;
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:10px;color:var(--text);font-size:.95rem;
+  font-family:var(--font);outline:none;transition:border-color .2s;
+}
+.login-field input:focus{border-color:var(--accent)}
+.login-err{color:var(--danger);font-size:.82rem;text-align:center;margin-bottom:12px;min-height:18px}
+.login-btn{
+  width:100%;padding:13px;
+  background:linear-gradient(135deg,var(--accent),#00b380);
+  border:none;border-radius:10px;
+  color:#0a0c10;font-weight:800;font-size:1rem;
+  cursor:pointer;font-family:var(--font);
+  transition:opacity .2s,transform .15s;
+  margin-top:4px;
+}
+.login-btn:hover{opacity:.9;transform:translateY(-1px)}
+
   position:sticky;top:0;z-index:100;
   background:rgba(10,12,16,0.93);
   backdrop-filter:blur(20px);
@@ -351,6 +406,27 @@ td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
 </head>
 <body>
 
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-icon">📋</div>
+      <div class="login-logo-text">Lista ni <span>Boss</span></div>
+    </div>
+    <h2>Mag-login para magpatuloy</h2>
+    <div class="login-field">
+      <label>Username</label>
+      <input type="text" id="l-user" placeholder="username" autocomplete="username">
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="login-err" id="l-err"></div>
+    <button class="login-btn" onclick="doLogin()">🔐 Login</button>
+  </div>
+</div>
+
 <header>
   <div class="logo">
     <div class="logo-icon">💸</div>
@@ -358,6 +434,7 @@ td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
   </div>
   <div class="header-right">
     <div class="header-badge">Dapat Bayad: <b id="hdr-total">₱0</b></div>
+    <button class="btn" style="background:var(--surface2);color:var(--text2);border:1px solid var(--border2);padding:7px 14px;font-size:.82rem" onclick="doLogout()">🚪 Logout</button>
     <button class="btn btn-p" onclick="openAdd()">➕ Bagong Utang</button>
   </div>
 </header>
@@ -932,6 +1009,43 @@ function toast(msg,type='ok'){
 }
 
 // ========== INIT ==========
+function doLogout() {
+  localStorage.removeItem(SESSION_KEY);
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('l-user').value = '';
+  document.getElementById('l-pass').value = '';
+  document.getElementById('l-err').textContent = '';
+}
+
+// ========== LOGIN ==========
+const DEFAULT_USER = 'itsmehope';
+const DEFAULT_PASS = 'itsmehope';
+const SESSION_KEY  = 'lista-session';
+
+function doLogin() {
+  const u = document.getElementById('l-user').value.trim();
+  const p = document.getElementById('l-pass').value;
+  const saved = JSON.parse(localStorage.getItem('lista-creds') || 'null');
+  const validUser = saved ? saved.user : DEFAULT_USER;
+  const validPass = saved ? saved.pass : DEFAULT_PASS;
+  if (u === validUser && p === validPass) {
+    localStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('l-err').textContent = '';
+  } else {
+    document.getElementById('l-err').textContent = '❌ Mali ang username o password!';
+    document.getElementById('l-pass').value = '';
+  }
+}
+
+function checkSession() {
+  if (localStorage.getItem(SESSION_KEY) === '1') {
+    document.getElementById('login-screen').style.display = 'none';
+  }
+}
+
+checkSession();
+
 loadData();
 </script>
 </body>

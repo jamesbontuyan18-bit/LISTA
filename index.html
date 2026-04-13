@@ -2,7 +2,11 @@
 <html lang="fil">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0c10">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Lista ni Boss — Utang Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -401,6 +405,18 @@ td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
   td.hide-sm,th.hide-sm{display:none}
   .header-badge{display:none}
   header{padding:0 14px}
+  .login-box{
+    padding:32px 22px;
+    margin:16px;
+    border-radius:16px;
+  }
+}
+/* Force dark background on all elements */
+html, body {
+  background:#0a0c10 !important;
+}
+#login-screen {
+  background:#0a0c10 !important;
 }
 </style>
 </head>
@@ -574,6 +590,12 @@ td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
         <option value="overdue">🚨 Overdue Notice</option>
         <option value="gentle">😊 Malambing na Paalala</option>
         <option value="final">⚠️ Huling Babala</option>
+        <option value="gcash">💙 GCash Request</option>
+        <option value="partial">💰 Partial Payment OK</option>
+        <option value="followup">📞 Follow-up</option>
+        <option value="goodvibes">🌟 Good Vibes</option>
+        <option value="tagalog">🇵🇭 Pormal na Tagalog</option>
+        <option value="bisaya">🌊 Bisaya</option>
         <option value="custom">✏️ Custom</option>
       </select>
     </div>
@@ -608,6 +630,13 @@ td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
         <option value="reminder">🔔 Reminder ng Utang</option>
         <option value="overdue">🚨 Overdue Notice</option>
         <option value="gentle">😊 Malambing na Paalala</option>
+        <option value="final">⚠️ Huling Babala</option>
+        <option value="gcash">💙 GCash Request</option>
+        <option value="partial">💰 Partial Payment OK</option>
+        <option value="followup">📞 Follow-up</option>
+        <option value="goodvibes">🌟 Good Vibes</option>
+        <option value="tagalog">🇵🇭 Pormal na Tagalog</option>
+        <option value="bisaya">🌊 Bisaya</option>
       </select>
     </div>
     <div class="sms-preview" id="blast-prev"></div>
@@ -691,6 +720,12 @@ const tmpl = {
   overdue:  u => `URGENT: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay OVERDUE na (due: ${u.due||'nakaraan'}). Pakibayad na agad. Salamat!`,
   gentle:   u => `Hi ${u.name}! Kamusta? Nais ko lang ipaalala na may utang ka pa sa amin na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Kailan mo ito mababayaran? Salamat at ingat! 😊`,
   final:    u => `HULING BABALA: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay hindi pa nabayaran. Pakiusap na makipag-ugnayan agad. Salamat.`,
+  gcash:    u => `Hi ${u.name}! Pwede mo na i-send ang ₱${(u.amount+(u.interest||0)).toLocaleString()} mo sa GCash namin. Salamat! 💙`,
+  partial:  u => `Hi ${u.name}! Okay lang kahit partial muna ang bayad para sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Makipag-ugnayan ka lang sa amin. Salamat! 🙏`,
+  followup: u => `${u.name}, follow-up lang ako sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} (due: ${u.due||'ASAP'}). Sana maayos na natin ito. Salamat!`,
+  goodvibes:u => `Hey ${u.name}! 😊 Wala akong masama sa iyo ha, paalala lang — may ₱${(u.amount+(u.interest||0)).toLocaleString()} kang utang sa amin. Kahit kailan mo mabayaran, I-message mo lang kami. Salamat! 🙏✨`,
+  tagalog:  u => `Mahal na ${u.name}, nais naming ipaabot na ang inyong utang na nagkakahalaga ng ₱${(u.amount+(u.interest||0)).toLocaleString()} ay dapat na sanang mabayaran noong ${u.due||'nakaraang petsa'}. Umaasa kaming makapag-usap kayo sa amin. Maraming salamat po.`,
+  bisaya:   u => `${u.name}, pahibaw lang nga naa kay utang nga ₱${(u.amount+(u.interest||0)).toLocaleString()} kanamo. Palihug bayri na kung mahimo. Salamat kaayo! 🙏`,
 };
 
 // ========== RENDER ==========

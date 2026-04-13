@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Lista ni James Hope — Utang Tracker</title>
+<title>Lista ni James — Utang Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -427,7 +427,7 @@ html, body {
   <div class="login-box">
     <div class="login-logo">
       <div class="login-logo-icon">📋</div>
-      <div class="login-logo-text">Lista ni <span>Boss</span></div>
+      <div class="login-logo-text">Lista ni <span>James</span></div>
     </div>
     <h2>Mag-login para magpatuloy</h2>
     <div class="login-field">
@@ -446,7 +446,7 @@ html, body {
 <header>
   <div class="logo">
     <div class="logo-icon">💸</div>
-    <div class="logo-text">Lista ni <span>Boss</span></div>
+    <div class="logo-text">Lista ni <span>James</span></div>
   </div>
   <div class="header-right">
     <div class="header-badge">Dapat Bayad: <b id="hdr-total">₱0</b></div>
@@ -670,39 +670,22 @@ html, body {
 const STORAGE_KEY = 'utang-lista-v2';
 const HISTORY_KEY = 'utang-hist-v2';
 
-function loadData() {
+async function loadData() {
   try {
-    const r1 = localStorage.getItem(STORAGE_KEY);
-    const r2 = localStorage.getItem(HISTORY_KEY);
-    utangList = r1 ? JSON.parse(r1) : [];
-    payHistory = r2 ? JSON.parse(r2) : [];
+    toast('Nilo-load ang data...', 'info');
+    const data = await cloudLoad();
+    utangList  = data.utangList  || [];
+    payHistory = data.payHistory || [];
   } catch(e) {
-    utangList = [];
+    utangList  = [];
     payHistory = [];
   }
-  // Seed sample data only if truly empty (first use)
-  if (utangList.length === 0) {
-    const today = new Date();
-    const fmt = d => d.toISOString().split('T')[0];
-    utangList = [
-      { id:1, name:'Maria Santos', phone:'09171234567', amount:500, type:'gcash', date:fmt(new Date(today-5*864e5)), due:fmt(new Date(today-1*864e5)), interest:0, notes:'Para sa pagkain', status:'overdue' },
-      { id:2, name:'Pedro Reyes', phone:'09281234567', amount:1000, type:'cash', date:fmt(new Date(today-3*864e5)), due:fmt(new Date(today+5*864e5)), interest:50, notes:'Load muna', status:'pending' },
-      { id:3, name:'Ana Lim', phone:'09091234567', amount:200, type:'load', date:fmt(new Date(today-10*864e5)), due:fmt(new Date(today-7*864e5)), interest:0, notes:'', status:'paid' },
-      { id:4, name:'Jose Garcia', phone:'09561234567', amount:3000, type:'cashin', date:fmt(new Date(today-2*864e5)), due:fmt(new Date(today+3*864e5)), interest:100, notes:'Utang para sa negosyo', status:'pending' },
-    ];
-    save();
-  }
+  // Start blank on new device
   renderTable();
 }
 
-function save() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(utangList));
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(payHistory));
-  } catch(e) {
-    console.error('Save failed:', e);
-    toast('Hindi na-save!','err');
-  }
+async function save() {
+  await cloudSave();
 }
 
 // ========== STATE ==========
@@ -856,7 +839,7 @@ function openEdit(id) {
   openOverlay('add-overlay');
 }
 
-function saveEntry() {
+async function saveEntry() {
   const name=document.getElementById('f-name').value.trim();
   const phone=document.getElementById('f-phone').value.trim();
   const amount=parseFloat(document.getElementById('f-amount').value);
@@ -884,7 +867,7 @@ function saveEntry() {
     utangList.push(obj);
     toast(`Na-record ang utang ni ${name}!`,'ok');
   }
-  save();
+  await save();
   closeOverlay('add-overlay');
   renderTable();
 }
@@ -894,7 +877,7 @@ function markPaid(id) {
     const u=utangList.find(x=>x.id===id); if(!u) return;
     u.status='paid';
     payHistory.push({...u, paidDate:new Date().toISOString().split('T')[0]});
-    save(); renderTable();
+    save().then(()=>renderTable());
     toast(`Salamat! Bayad na si ${u.name} ✅`,'ok');
   });
 }
@@ -903,7 +886,7 @@ function del(id) {
   const u=utangList.find(x=>x.id===id); if(!u) return;
   confirm2('I-delete?',`Burahin ang utang ni <strong>${u.name}</strong>?`,async()=>{
     utangList=utangList.filter(x=>x.id!==id);
-    save(); renderTable();
+    save().then(()=>renderTable());
     toast('Na-delete na!','info');
   });
 }
@@ -1052,7 +1035,42 @@ function doLogout() {
   document.getElementById('l-err').textContent = '';
 }
 
-// ========== LOGIN ==========
+// ========== CLOUD SYNC (JSONBin) ==========
+const BIN_ID  = '69dcfd03aaba882197f46e6e';
+const BIN_KEY = '$2a$10$g2lVJd07m0cutlfVI7W7XebVCAQ34rtVOLCgQrwaXcx2NPl8ky2bO';
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const BIN_HDR = { 'Content-Type':'application/json', 'X-Master-Key': BIN_KEY };
+
+async function cloudLoad() {
+  try {
+    const res  = await fetch(BIN_URL + '/latest', { headers: BIN_HDR });
+    const data = await res.json();
+    return data.record || { utangList:[], payHistory:[] };
+  } catch(e) {
+    // fallback to localStorage if offline
+    const u = localStorage.getItem(STORAGE_KEY);
+    const p = localStorage.getItem(HISTORY_KEY);
+    return { utangList: u ? JSON.parse(u) : [], payHistory: p ? JSON.parse(p) : [] };
+  }
+}
+
+async function cloudSave() {
+  try {
+    await fetch(BIN_URL, {
+      method:  'PUT',
+      headers: BIN_HDR,
+      body:    JSON.stringify({ utangList, payHistory })
+    });
+    // also save locally as backup
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(utangList));
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(payHistory));
+  } catch(e) {
+    // offline - save locally only
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(utangList));
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(payHistory));
+    toast('Offline — na-save sa device lang', 'info');
+  }
+}
 const DEFAULT_USER = 'itsmehope';
 const DEFAULT_PASS = 'itsmehope';
 const SESSION_KEY  = 'lista-session';

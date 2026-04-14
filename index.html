@@ -3,64 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0a0c10">
+<meta name="theme-color" content="#f5f7ff">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Lista ni James Hope — Utang Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0c10;
-  --surface: #13161e;
-  --surface2: #1b1f2c;
-  --surface3: #222736;
-  --border: #252b3b;
-  --border2: #2e3447;
-  --accent: #00e5a0;
-  --accent-dim: rgba(0,229,160,0.12);
-  --accent2: #ff7043;
-  --accent3: #5b9cf6;
-  --danger: #f44336;
-  --warn: #ffa726;
-  --gcash: #007DFF;
-  --text: #eceef5;
-  --text2: #8891aa;
-  --text3: #4a5268;
-  --paid-color: #00b86c;
+  --bg: #f0f2fa;
+  --surface: #ffffff;
+  --surface2: #f5f7ff;
+  --surface3: #eaecf8;
+  --border: #dde1f0;
+  --border2: #c8cee0;
+  --accent: #00a36c;
+  --accent-dim: rgba(0,163,108,0.10);
+  --accent2: #e85d26;
+  --accent3: #3b6fea;
+  --danger: #d93025;
+  --warn: #e07b00;
+  --gcash: #0062cc;
+  --text: #1a1d2e;
+  --text2: #4a5268;
+  --text3: #9099b4;
+  --paid-color: #00855a;
   --font: 'Plus Jakarta Sans', sans-serif;
   --mono: 'JetBrains Mono', monospace;
+  --shadow: 0 2px 12px rgba(30,40,90,0.08);
+  --shadow-lg: 0 8px 36px rgba(30,40,90,0.13);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 0%, rgba(0,229,160,0.055) 0%, transparent 65%),radial-gradient(ellipse 50% 40% at 85% 100%, rgba(91,156,246,0.045) 0%, transparent 65%);pointer-events:none;z-index:0;}
-html,body{background:#0a0c10 !important;}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 70% 50% at 10% 0%, rgba(0,163,108,0.07) 0%, transparent 60%),
+  radial-gradient(ellipse 60% 45% at 90% 100%, rgba(59,111,234,0.06) 0%, transparent 60%);
+  pointer-events:none;z-index:0;}
 
 /* LOGIN */
-#login-screen{position:fixed;inset:0;z-index:9999;background:#0a0c10 !important;display:flex;align-items:center;justify-content:center;flex-direction:column;}
-#login-screen::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 0%, rgba(0,229,160,0.07) 0%, transparent 65%),radial-gradient(ellipse 50% 40% at 85% 100%, rgba(91,156,246,0.06) 0%, transparent 65%);pointer-events:none;}
-.login-box{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:40px 36px;width:100%;max-width:380px;box-shadow:0 24px 60px rgba(0,0,0,.5);position:relative;z-index:1;}
+#login-screen{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;}
+#login-screen::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 70% 50% at 15% 0%, rgba(0,163,108,0.09) 0%, transparent 65%),
+  radial-gradient(ellipse 50% 40% at 85% 100%, rgba(59,111,234,0.07) 0%, transparent 65%);
+  pointer-events:none;}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:42px 38px;width:100%;max-width:390px;box-shadow:var(--shadow-lg);position:relative;z-index:1;}
 .login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;justify-content:center;}
-.login-logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),var(--gcash));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;}
-.login-logo-text{font-size:1.3rem;font-weight:800;letter-spacing:-.03em}
+.login-logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#007a50);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 4px 14px rgba(0,163,108,0.25);}
+.login-logo-text{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:var(--text)}
 .login-logo-text span{color:var(--accent)}
-.login-box h2{text-align:center;font-size:1rem;color:var(--text2);margin-bottom:24px;font-weight:500}
+.login-box h2{text-align:center;font-size:.92rem;color:var(--text3);margin-bottom:26px;font-weight:500}
 .login-field{margin-bottom:16px}
-.login-field label{display:block;font-size:.8rem;color:var(--text2);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
-.login-field input{width:100%;padding:12px 16px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .2s;}
-.login-field input:focus{border-color:var(--accent)}
-.login-err{color:var(--danger);font-size:.82rem;text-align:center;margin-bottom:12px;min-height:18px}
-.login-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--accent),#00b380);border:none;border-radius:10px;color:#0a0c10;font-weight:800;font-size:1rem;cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .15s;margin-top:4px;}
-.login-btn:hover{opacity:.9;transform:translateY(-1px)}
+.login-field label{display:block;font-size:.75rem;color:var(--text2);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.login-field input{width:100%;padding:12px 16px;background:var(--surface2);border:1.5px solid var(--border);border-radius:11px;color:var(--text);font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .2s,box-shadow .2s;}
+.login-field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,0.12)}
+.login-err{color:var(--danger);font-size:.82rem;text-align:center;margin-bottom:12px;min-height:18px;font-weight:600}
+.login-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--accent),#007a50);border:none;border-radius:11px;color:#fff;font-weight:800;font-size:1rem;cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .15s,box-shadow .2s;margin-top:4px;box-shadow:0 4px 16px rgba(0,163,108,0.3);}
+.login-btn:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,163,108,0.4)}
 
 /* HEADER */
-header{position:sticky;top:0;z-index:100;background:rgba(10,12,16,0.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 8px rgba(30,40,90,0.06);}
 .logo{display:flex;align-items:center;gap:10px}
-.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--gcash));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
-.logo-text{font-weight:800;font-size:1.1rem;letter-spacing:-0.03em;line-height:1;}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#007a50);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;box-shadow:0 3px 10px rgba(0,163,108,0.22);}
+.logo-text{font-weight:800;font-size:1.1rem;letter-spacing:-0.03em;line-height:1;color:var(--text);}
 .logo-text span{color:var(--accent)}
-.header-badge{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:0.75rem;color:var(--text2);}
+.header-badge{background:var(--surface2);border:1.5px solid var(--border);border-radius:20px;padding:5px 14px;font-size:0.75rem;color:var(--text2);}
 .header-badge b{color:var(--accent2);font-family:var(--mono)}
 .header-right{display:flex;gap:8px;align-items:center}
 
@@ -70,117 +77,120 @@ header{position:sticky;top:0;z-index:100;background:rgba(10,12,16,0.93);backdrop
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
 @media(max-width:760px){.stats{grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.stats{grid-template-columns:1fr}}
-.scard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
-.scard:hover{transform:translateY(-2px)}
-.scard::after{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;border-radius:14px 14px 0 0;}
+.scard{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:18px 20px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;box-shadow:var(--shadow);}
+.scard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.scard::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
 .scard.g::after{background:linear-gradient(90deg,var(--accent),#00b86c)}.scard.g:hover{border-color:var(--accent)}
 .scard.o::after{background:linear-gradient(90deg,var(--accent2),var(--warn))}.scard.o:hover{border-color:var(--accent2)}
-.scard.r::after{background:linear-gradient(90deg,var(--danger),#ff6f60)}.scard.r:hover{border-color:var(--danger)}
+.scard.r::after{background:linear-gradient(90deg,var(--danger),#ff6060)}.scard.r:hover{border-color:var(--danger)}
 .scard.b::after{background:linear-gradient(90deg,var(--accent3),var(--gcash))}.scard.b:hover{border-color:var(--accent3)}
-.slabel{font-size:0.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:7px;font-weight:600}
-.sval{font-size:1.5rem;font-weight:800;font-family:var(--mono);letter-spacing:-.03em}
+.slabel{font-size:0.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:7px;font-weight:700}
+.sval{font-size:1.55rem;font-weight:800;font-family:var(--mono);letter-spacing:-.03em}
 .sval.g{color:var(--accent)}.sval.o{color:var(--accent2)}.sval.r{color:var(--danger)}.sval.b{color:var(--accent3)}
 .ssub{font-size:0.7rem;color:var(--text3);margin-top:3px;font-family:var(--mono)}
 
-.banner{background:rgba(244,67,54,0.07);border:1px solid rgba(244,67,54,0.25);border-radius:12px;padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;font-size:0.83rem;}
+.banner{background:rgba(217,48,37,0.06);border:1.5px solid rgba(217,48,37,0.2);border-radius:13px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;font-size:0.83rem;}
 .banner strong{color:var(--danger)}.banner-txt{flex:1;color:var(--text2)}
 
 .row-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
-.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;}
-.tab{padding:7px 16px;border-radius:7px;border:none;background:transparent;color:var(--text2);font-family:var(--font);font-size:0.82rem;font-weight:600;cursor:pointer;transition:all .18s;}
-.tab.on{background:var(--accent);color:#000}
+.tabs{display:flex;gap:4px;background:var(--surface);border:1.5px solid var(--border);border-radius:11px;padding:4px;box-shadow:var(--shadow);}
+.tab{padding:7px 16px;border-radius:8px;border:none;background:transparent;color:var(--text2);font-family:var(--font);font-size:0.82rem;font-weight:600;cursor:pointer;transition:all .18s;}
+.tab.on{background:var(--accent);color:#fff;box-shadow:0 3px 10px rgba(0,163,108,0.25)}
 .toolbar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;align-items:center}
 .search-wrap{flex:1;min-width:190px;position:relative}
-.search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 12px 9px 36px;color:var(--text);font-family:var(--font);font-size:0.85rem;outline:none;transition:border-color .2s;}
-.search-wrap input:focus{border-color:var(--accent)}
+.search-wrap input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px 9px 36px;color:var(--text);font-family:var(--font);font-size:0.85rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+.search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,0.10)}
 .search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px}
-select.fsel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 12px;color:var(--text2);font-family:var(--font);font-size:0.82rem;outline:none;cursor:pointer;}
+select.fsel{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;color:var(--text2);font-family:var(--font);font-size:0.82rem;outline:none;cursor:pointer;}
 
 .btn{padding:9px 16px;border-radius:9px;border:none;font-family:var(--font);font-weight:700;font-size:0.82rem;cursor:pointer;transition:all .16s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
-.btn-p{background:var(--accent);color:#000}.btn-p:hover{background:#00f0a8;transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,229,160,.25)}
-.btn-g{background:transparent;border:1px solid var(--border);color:var(--text2)}.btn-g:hover{border-color:var(--accent);color:var(--accent)}
-.btn-d{background:var(--danger);color:#fff}.btn-d:hover{background:#f55447}
-.btn-s{background:var(--gcash);color:#fff}.btn-s:hover{background:#1a8fff;transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,125,255,.25)}
+.btn-p{background:var(--accent);color:#fff;box-shadow:0 3px 12px rgba(0,163,108,0.22)}.btn-p:hover{background:#00b876;transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,163,108,0.32)}
+.btn-g{background:var(--surface);border:1.5px solid var(--border);color:var(--text2)}.btn-g:hover{border-color:var(--accent);color:var(--accent)}
+.btn-d{background:var(--danger);color:#fff}.btn-d:hover{background:#c42820}
+.btn-s{background:var(--gcash);color:#fff;box-shadow:0 3px 12px rgba(0,98,204,0.2)}.btn-s:hover{background:#0074f0;transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,98,204,0.32)}
 .btn-sm{padding:7px 12px;font-size:0.78rem;border-radius:8px}
 
-.tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.tbl-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
 table{width:100%;border-collapse:collapse}
-thead tr{background:var(--surface2);border-bottom:1px solid var(--border)}
+thead tr{background:var(--surface2);border-bottom:1.5px solid var(--border)}
 th{padding:11px 14px;text-align:left;font-size:0.67rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text3);font-weight:700;white-space:nowrap;}
-tbody tr{border-bottom:1px solid rgba(37,43,59,.7);transition:background .12s}
+tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--surface2)}
 td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
-.nm{font-weight:700}.ph{font-size:0.72rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
+.nm{font-weight:700;color:var(--text)}.ph{font-size:0.72rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
 .tbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
-.t-cash{background:rgba(0,229,160,.1);color:var(--accent);border:1px solid rgba(0,229,160,.2)}
-.t-gcash{background:rgba(0,125,255,.1);color:var(--gcash);border:1px solid rgba(0,125,255,.2)}
-.t-load{background:rgba(255,112,67,.1);color:var(--accent2);border:1px solid rgba(255,112,67,.2)}
-.t-cashin{background:rgba(91,156,246,.1);color:var(--accent3);border:1px solid rgba(91,156,246,.2)}
+.t-cash{background:rgba(0,163,108,.1);color:var(--accent);border:1px solid rgba(0,163,108,.2)}
+.t-gcash{background:rgba(0,98,204,.1);color:var(--gcash);border:1px solid rgba(0,98,204,.2)}
+.t-load{background:rgba(232,93,38,.1);color:var(--accent2);border:1px solid rgba(232,93,38,.2)}
+.t-cashin{background:rgba(59,111,234,.1);color:var(--accent3);border:1px solid rgba(59,111,234,.2)}
 .sbadge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
 .sbadge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.s-pending{background:rgba(255,167,38,.1);color:var(--warn);border:1px solid rgba(255,167,38,.25)}.s-pending::before{background:var(--warn)}
-.s-overdue{background:rgba(244,67,54,.1);color:var(--danger);border:1px solid rgba(244,67,54,.25)}.s-overdue::before{background:var(--danger);animation:blink 1s infinite}
-.s-paid{background:rgba(0,184,108,.1);color:var(--paid-color);border:1px solid rgba(0,184,108,.2)}.s-paid::before{background:var(--paid-color)}
+.s-pending{background:rgba(224,123,0,.1);color:var(--warn);border:1px solid rgba(224,123,0,.25)}.s-pending::before{background:var(--warn)}
+.s-overdue{background:rgba(217,48,37,.1);color:var(--danger);border:1px solid rgba(217,48,37,.25)}.s-overdue::before{background:var(--danger);animation:blink 1s infinite}
+.s-paid{background:rgba(0,133,90,.1);color:var(--paid-color);border:1px solid rgba(0,133,90,.2)}.s-paid::before{background:var(--paid-color)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .amt{font-family:var(--mono);font-weight:600}.amt.owed{color:var(--accent)}.amt.paid-amt{color:var(--text3);text-decoration:line-through}
 .int-note{font-size:0.68rem;color:var(--text3);font-family:var(--mono)}
-.ac-btn{width:28px;height:28px;border-radius:7px;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:13px;transition:all .14s;margin-right:3px;}
-.ac-sms{background:rgba(0,125,255,.12);color:var(--gcash)}.ac-sms:hover{background:var(--gcash);color:#fff;transform:scale(1.12)}
-.ac-pay{background:rgba(0,229,160,.1);color:var(--accent)}.ac-pay:hover{background:var(--accent);color:#000;transform:scale(1.12)}
-.ac-edit{background:rgba(255,167,38,.1);color:var(--warn)}.ac-edit:hover{background:var(--warn);color:#000;transform:scale(1.12)}
-.ac-del{background:rgba(244,67,54,.08);color:var(--danger)}.ac-del:hover{background:var(--danger);color:#fff;transform:scale(1.12)}
+.ac-btn{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:13px;transition:all .14s;margin-right:3px;background:var(--surface2);}
+.ac-sms{color:var(--gcash);border-color:rgba(0,98,204,.2)}.ac-sms:hover{background:var(--gcash);color:#fff;border-color:var(--gcash);transform:scale(1.12)}
+.ac-pay{color:var(--accent);border-color:rgba(0,163,108,.2)}.ac-pay:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.12)}
+.ac-edit{color:var(--warn);border-color:rgba(224,123,0,.2)}.ac-edit:hover{background:var(--warn);color:#fff;border-color:var(--warn);transform:scale(1.12)}
+.ac-del{color:var(--danger);border-color:rgba(217,48,37,.15)}.ac-del:hover{background:var(--danger);color:#fff;border-color:var(--danger);transform:scale(1.12)}
 .empty{text-align:center;padding:55px 20px;color:var(--text3)}.empty .ei{font-size:2.8rem;margin-bottom:10px}.empty p{font-size:0.88rem}
 
-.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(30,40,90,0.35);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s;}
 .overlay.on{opacity:1;pointer-events:all}
-.modal{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:24px;width:100%;max-width:460px;max-height:92vh;overflow-y:auto;transform:scale(.95) translateY(12px);transition:transform .24s cubic-bezier(.34,1.56,.64,1);}
+.modal{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:26px;width:100%;max-width:460px;max-height:92vh;overflow-y:auto;transform:scale(.95) translateY(12px);transition:transform .24s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--shadow-lg);}
 .overlay.on .modal{transform:scale(1) translateY(0)}
 .mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.mtitle{font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
-.mclose{width:30px;height:30px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .14s;}
+.mtitle{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--text)}
+.mclose{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .14s;}
 .mclose:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
 .frow{margin-bottom:14px}
 .frow label{display:block;margin-bottom:5px;font-size:0.7rem;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
-.frow input,.frow select,.frow textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--text);font-family:var(--font);font-size:0.88rem;outline:none;transition:border-color .2s;}
-.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--accent)}
+.frow input,.frow select,.frow textarea{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-family:var(--font);font-size:0.88rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,0.10)}
 .frow textarea{resize:vertical;min-height:68px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.mfoot{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;border-top:1px solid var(--border);padding-top:16px;}
-.sms-info{background:rgba(0,125,255,.07);border:1px solid rgba(0,125,255,.18);border-radius:10px;padding:11px 13px;font-size:0.77rem;color:var(--text2);margin-bottom:4px;line-height:1.55;}
+.mfoot{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;border-top:1.5px solid var(--border);padding-top:16px;}
+.sms-info{background:rgba(0,98,204,.05);border:1.5px solid rgba(0,98,204,.15);border-radius:11px;padding:11px 13px;font-size:0.77rem;color:var(--text2);margin-bottom:4px;line-height:1.55;}
 .sms-info b{color:var(--accent3)}
-.sms-preview{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:13px;margin:12px 0;font-size:0.82rem;line-height:1.6;color:var(--text);}
+.sms-preview{background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px;margin:12px 0;font-size:0.82rem;line-height:1.6;color:var(--text);}
 .char-cnt{text-align:right;font-size:0.68rem;color:var(--text3);font-family:var(--mono);margin-top:3px}
-.hist-item{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:13px 15px;margin-bottom:9px;display:flex;gap:12px;align-items:flex-start;}
-.hist-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(0,229,160,.1);}
-.hist-name{font-weight:700;font-size:0.88rem}.hist-detail{font-size:0.74rem;color:var(--text3);margin-top:2px}
+.hist-item{background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;margin-bottom:9px;display:flex;gap:12px;align-items:flex-start;}
+.hist-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(0,163,108,.1);}
+.hist-name{font-weight:700;font-size:0.88rem;color:var(--text)}.hist-detail{font-size:0.74rem;color:var(--text3);margin-top:2px}
 .hist-amt{font-family:var(--mono);font-weight:600;font-size:0.92rem;color:var(--accent);margin-left:auto}
+
+/* PAID ROW STYLE */
+tbody tr.paid-row{background:rgba(0,133,90,0.04);}
+tbody tr.paid-row:hover{background:rgba(0,133,90,0.08);}
+
 #toasts{position:fixed;bottom:20px;right:20px;z-index:500;display:flex;flex-direction:column;gap:7px}
-.toast{background:var(--surface2);border:1px solid var(--border2);border-radius:11px;padding:11px 16px;font-size:0.82rem;display:flex;align-items:center;gap:9px;animation:slideIn .28s ease;box-shadow:0 6px 24px rgba(0,0,0,.4);max-width:300px;}
+.toast{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:11px 16px;font-size:0.82rem;display:flex;align-items:center;gap:9px;animation:slideIn .28s ease;box-shadow:var(--shadow-lg);max-width:300px;color:var(--text);}
 .toast.ok{border-color:var(--accent)}.toast.ok .ti{color:var(--accent)}
 .toast.err{border-color:var(--danger)}.toast.err .ti{color:var(--danger)}
 .toast.info{border-color:var(--gcash)}.toast.info .ti{color:var(--gcash)}
 @keyframes slideIn{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--surface2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 @media(max-width:640px){
   td.hide-sm,th.hide-sm{display:none}
   .header-badge{display:none}
   header{padding:0 14px}
   .login-box{padding:32px 22px;margin:16px;border-radius:16px;}
-  /* Mobile card layout for table */
   .tbl-wrap{border-radius:12px}
   table thead{display:none}
   table tbody tr{
     display:flex;flex-direction:column;
     padding:14px 14px;gap:6px;
-    border-bottom:1px solid rgba(37,43,59,.7);
+    border-bottom:1px solid var(--border);
   }
   table tbody tr:last-child{border-bottom:none}
   table tbody td{padding:0;border:none;font-size:0.85rem}
   .mob-row-top{display:flex;justify-content:space-between;align-items:flex-start}
   .mob-row-mid{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .mob-row-bot{display:flex;justify-content:space-between;align-items:center}
-  /* Wrap action buttons */
   td[onclick]{display:flex;gap:4px;justify-content:flex-end}
 }
 </style>
@@ -213,7 +223,7 @@ td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
   </div>
   <div class="header-right">
     <div class="header-badge">Dapat Bayad: <b id="hdr-total">₱0</b></div>
-    <button class="btn" style="background:var(--surface2);color:var(--text2);border:1px solid var(--border2);padding:7px 14px;font-size:.82rem" onclick="doLogout()">🚪 Logout</button>
+    <button class="btn" style="background:var(--surface2);color:var(--text2);border:1.5px solid var(--border);padding:7px 14px;font-size:.82rem" onclick="doLogout()">🚪 Logout</button>
     <button class="btn btn-p" onclick="openAdd()">➕ Bagong Utang</button>
   </div>
 </header>
@@ -292,6 +302,7 @@ td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
       <option value="gcash">💙 GCash Request</option><option value="partial">💰 Partial Payment OK</option>
       <option value="followup">📞 Follow-up</option><option value="goodvibes">🌟 Good Vibes</option>
       <option value="tagalog">🇵🇭 Pormal na Tagalog</option><option value="bisaya">🌊 Bisaya</option>
+      <option value="thankyou">🙏 Salamat sa Bayad</option><option value="receipt">🧾 Receipt ng Bayad</option>
       <option value="custom">✏️ Custom</option>
     </select>
   </div>
@@ -338,6 +349,7 @@ const BIN_ID  = '69dcfd03aaba882197f46e6e';
 const BIN_KEY = '$2a$10$g2lVJd07m0cutlfVI7W7XebVCAQ34rtVOLCgQrwaXcx2NPl8ky2bO';
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 const BIN_HDR = { 'Content-Type':'application/json', 'X-Master-Key': BIN_KEY };
+const SENDER  = 'James Hope'; // ← Sender name sa lahat ng SMS
 
 let utangList = [], payHistory = [], editId = null, curTab = 'all', curSMSId = null, blastQ = [], blastIdx = 0;
 
@@ -402,18 +414,21 @@ async function loadData() {
 }
 async function save() { await cloudSave(); }
 
-// ===== TEMPLATES =====
+// ===== SMS TEMPLATES (lahat may SENDER name) =====
 const tmpl = {
-  reminder: u => `Magandang araw, ${u.name}! Paalala lang na mayroon kang utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} sa amin. Due date: ${u.due||'ASAP'}. Pakiayos na po. Salamat! 🙏`,
-  overdue:  u => `URGENT: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay OVERDUE na (due: ${u.due||'nakaraan'}). Pakibayad na agad. Salamat!`,
-  gentle:   u => `Hi ${u.name}! Kamusta? Nais ko lang ipaalala na may utang ka pa sa amin na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Kailan mo ito mababayaran? Salamat at ingat! 😊`,
-  final:    u => `HULING BABALA: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay hindi pa nabayaran. Pakiusap na makipag-ugnayan agad. Salamat.`,
-  gcash:    u => `Hi ${u.name}! Pwede mo na i-send ang ₱${(u.amount+(u.interest||0)).toLocaleString()} mo sa GCash namin. Salamat! 💙`,
-  partial:  u => `Hi ${u.name}! Okay lang kahit partial muna ang bayad para sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Makipag-ugnayan ka lang sa amin. Salamat! 🙏`,
-  followup: u => `${u.name}, follow-up lang ako sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} (due: ${u.due||'ASAP'}). Sana maayos na natin ito. Salamat!`,
-  goodvibes:u => `Hey ${u.name}! 😊 Wala akong masama sa iyo ha, paalala lang — may ₱${(u.amount+(u.interest||0)).toLocaleString()} kang utang sa amin. Kahit kailan mo mabayaran, I-message mo lang kami. Salamat! 🙏✨`,
-  tagalog:  u => `Mahal na ${u.name}, nais naming ipaabot na ang inyong utang na nagkakahalaga ng ₱${(u.amount+(u.interest||0)).toLocaleString()} ay dapat na sanang mabayaran noong ${u.due||'nakaraang petsa'}. Umaasa kaming makapag-usap kayo sa amin. Maraming salamat po.`,
-  bisaya:   u => `${u.name}, pahibaw lang nga naa kay utang nga ₱${(u.amount+(u.interest||0)).toLocaleString()} kanamo. Palihug bayri na kung mahimo. Salamat kaayo! 🙏`,
+  reminder:  u => `Magandang araw, ${u.name}! Paalala lang na mayroon kang utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} sa amin. Due date: ${u.due||'ASAP'}. Pakiayos na po. Salamat! 🙏\n— ${SENDER}`,
+  overdue:   u => `URGENT: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay OVERDUE na (due: ${u.due||'nakaraan'}). Pakibayad na agad. Salamat!\n— ${SENDER}`,
+  gentle:    u => `Hi ${u.name}! Kamusta? Nais ko lang ipaalala na may utang ka pa sa amin na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Kailan mo ito mababayaran? Salamat at ingat! 😊\n— ${SENDER}`,
+  final:     u => `HULING BABALA: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay hindi pa nabayaran. Pakiusap na makipag-ugnayan agad. Salamat.\n— ${SENDER}`,
+  gcash:     u => `Hi ${u.name}! Pwede mo na i-send ang ₱${(u.amount+(u.interest||0)).toLocaleString()} mo sa GCash namin. Salamat! 💙\n— ${SENDER}`,
+  partial:   u => `Hi ${u.name}! Okay lang kahit partial muna ang bayad para sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Makipag-ugnayan ka lang sa amin. Salamat! 🙏\n— ${SENDER}`,
+  followup:  u => `${u.name}, follow-up lang ako sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} (due: ${u.due||'ASAP'}). Sana maayos na natin ito. Salamat!\n— ${SENDER}`,
+  goodvibes: u => `Hey ${u.name}! 😊 Wala akong masama sa iyo ha, paalala lang — may ₱${(u.amount+(u.interest||0)).toLocaleString()} kang utang sa amin. Kahit kailan mo mabayaran, I-message mo lang kami. Salamat! 🙏✨\n— ${SENDER}`,
+  tagalog:   u => `Mahal na ${u.name}, nais naming ipaabot na ang inyong utang na nagkakahalaga ng ₱${(u.amount+(u.interest||0)).toLocaleString()} ay dapat na sanang mabayaran noong ${u.due||'nakaraang petsa'}. Umaasa kaming makapag-usap kayo sa amin. Maraming salamat po.\n— ${SENDER}`,
+  bisaya:    u => `${u.name}, pahibaw lang nga naa kay utang nga ₱${(u.amount+(u.interest||0)).toLocaleString()} kanamo. Palihug bayri na kung mahimo. Salamat kaayo! 🙏\n— ${SENDER}`,
+  // ===== NEW: Para sa PAID na customers =====
+  thankyou:  u => `Salamat, ${u.name}! Natanggap na namin ang iyong bayad na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Wala ka nang utang sa amin. Ingat lagi! 🙏✅\n— ${SENDER}`,
+  receipt:   u => `🧾 RESIBO NG BAYAD\nPangalan: ${u.name}\nHalaga: ₱${(u.amount+(u.interest||0)).toLocaleString()}\nPetsa ng bayad: ${u.paidDate||new Date().toISOString().split('T')[0]}\nStatus: BAYAD NA ✅\nSalamat sa iyong katapatan!\n— ${SENDER}`,
 };
 
 // ===== RENDER =====
@@ -460,7 +475,7 @@ function renderTable() {
   if(!list.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty"><div class="ei">🕊️</div><p>Wala pang records dito.<br>Mag-add ng bagong utang!</p></div></td></tr>`;renderStats();renderHist();return;}
   tbody.innerHTML=list.map(u=>{
     const total=u.amount+(u.interest||0), ip=u.status==='paid';
-    return `<tr>
+    return `<tr class="${ip?'paid-row':''}">
       <td colspan="7" style="padding:0">
         <div class="mob-row-top">
           <div><div class="nm">${u.name}</div><div class="ph">${u.phone}</div></div>
@@ -475,7 +490,7 @@ function renderTable() {
         <div class="mob-row-bot">
           <span style="font-size:.72rem;color:var(--text3);font-family:var(--mono)">${u.date||''}</span>
           <div style="display:flex;gap:4px">
-            ${!ip?`<button class="ac-btn ac-sms" title="Send SMS" onclick="openSMS(${u.id})">📱</button>`:''}
+            <button class="ac-btn ac-sms" title="Send SMS" onclick="openSMS(${u.id})">📱</button>
             ${!ip?`<button class="ac-btn ac-pay" title="Markahan Bayad" onclick="markPaid(${u.id})">✅</button>`:''}
             <button class="ac-btn ac-edit" title="I-edit" onclick="openEdit(${u.id})">✏️</button>
             <button class="ac-btn ac-del" title="I-delete" onclick="del(${u.id})">🗑️</button>
@@ -538,7 +553,8 @@ function markPaid(id) {
   confirm2('Markahan bilang Bayad?','Sigurado ka bang nagbayad na?',async()=>{
     const u=utangList.find(x=>x.id===id); if(!u) return;
     u.status='paid';
-    payHistory.push({...u,paidDate:new Date().toISOString().split('T')[0]});
+    u.paidDate=new Date().toISOString().split('T')[0];
+    payHistory.push({...u});
     toast(`Salamat! Bayad na si ${u.name} ✅`,'ok');
     await save();
     renderTable();
@@ -559,13 +575,24 @@ function openSMS(id) {
   curSMSId=id; const u=utangList.find(x=>x.id===id); if(!u) return;
   document.getElementById('sms-to').value=u.name;
   document.getElementById('sms-ph').value=u.phone;
-  document.getElementById('sms-tmpl').value=u.status==='overdue'?'overdue':'reminder';
+
+  // Default template based on status
+  if(u.status==='paid') {
+    document.getElementById('sms-tmpl').value='thankyou';
+  } else if(u.status==='overdue') {
+    document.getElementById('sms-tmpl').value='overdue';
+  } else {
+    document.getElementById('sms-tmpl').value='reminder';
+  }
+
   applyTmpl(); openOverlay('sms-overlay');
 }
 function applyTmpl() {
   const u=utangList.find(x=>x.id===curSMSId); if(!u) return;
   const t=document.getElementById('sms-tmpl').value;
-  document.getElementById('sms-msg').value=t==='custom'?'':(tmpl[t]?tmpl[t](u):'');
+  // For paid users, pass paidDate if available
+  const uWithPaid = {...u, paidDate: u.paidDate || new Date().toISOString().split('T')[0]};
+  document.getElementById('sms-msg').value=t==='custom'?'':(tmpl[t]?tmpl[t](uWithPaid):'');
   updChar();
 }
 function updChar() {
@@ -589,7 +616,7 @@ function openBlast(overdueOnly) {
   const list=overdueOnly?utangList.filter(u=>u.status==='overdue'):utangList.filter(u=>u.status!=='paid');
   if(!list.length){toast(overdueOnly?'Walang overdue!':'Walang pending na utang!','info');return}
   blastQ=list; blastIdx=0;
-  document.getElementById('blast-list').innerHTML=list.map(u=>`<div style="padding:8px 11px;border-radius:8px;background:var(--surface2);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center"><div><strong>${u.name}</strong><span style="font-family:var(--mono);font-size:.72rem;color:var(--text3);margin-left:8px">${u.phone}</span></div><span style="color:${u.status==='overdue'?'var(--danger)':'var(--warn)'};font-size:.72rem;font-weight:700">${u.status.toUpperCase()}</span></div>`).join('');
+  document.getElementById('blast-list').innerHTML=list.map(u=>`<div style="padding:8px 11px;border-radius:8px;background:var(--surface2);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border)"><div><strong>${u.name}</strong><span style="font-family:var(--mono);font-size:.72rem;color:var(--text3);margin-left:8px">${u.phone}</span></div><span style="color:${u.status==='overdue'?'var(--danger)':'var(--warn)'};font-size:.72rem;font-weight:700">${u.status.toUpperCase()}</span></div>`).join('');
   if(overdueOnly) document.getElementById('blast-tmpl').value='overdue';
   updBlastPrev(); document.getElementById('blast-btn').textContent=`📲 Send SMS (${list.length} tao)`; openOverlay('blast-overlay');
 }

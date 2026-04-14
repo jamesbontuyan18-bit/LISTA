@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#f5f7ff">
+<meta name="theme-color" content="#f0f2fa">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -11,191 +11,202 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f0f2fa;
-  --surface: #ffffff;
-  --surface2: #f5f7ff;
-  --surface3: #eaecf8;
-  --border: #dde1f0;
-  --border2: #c8cee0;
-  --accent: #00a36c;
-  --accent-dim: rgba(0,163,108,0.10);
-  --accent2: #e85d26;
-  --accent3: #3b6fea;
-  --danger: #d93025;
-  --warn: #e07b00;
-  --gcash: #0062cc;
-  --text: #1a1d2e;
-  --text2: #4a5268;
-  --text3: #9099b4;
-  --paid-color: #00855a;
-  --font: 'Plus Jakarta Sans', sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-  --shadow: 0 2px 12px rgba(30,40,90,0.08);
-  --shadow-lg: 0 8px 36px rgba(30,40,90,0.13);
+  --bg:#f0f2fa;--surface:#fff;--surface2:#f5f7ff;--surface3:#eaecf8;
+  --border:#dde1f0;--border2:#c8cee0;
+  --accent:#00a36c;--accent2:#e85d26;--accent3:#3b6fea;
+  --danger:#d93025;--warn:#e07b00;--gcash:#0062cc;
+  --text:#1a1d2e;--text2:#4a5268;--text3:#9099b4;--paid-color:#00855a;
+  --font:'Plus Jakarta Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  --sh:0 2px 12px rgba(30,40,90,.08);--sh-lg:0 8px 36px rgba(30,40,90,.13);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background:
-  radial-gradient(ellipse 70% 50% at 10% 0%, rgba(0,163,108,0.07) 0%, transparent 60%),
-  radial-gradient(ellipse 60% 45% at 90% 100%, rgba(59,111,234,0.06) 0%, transparent 60%);
-  pointer-events:none;z-index:0;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 50% at 10% 0%,rgba(0,163,108,.07) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 45% at 90% 100%,rgba(59,111,234,.06) 0%,transparent 60%);}
 
 /* LOGIN */
-#login-screen{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;}
-#login-screen::before{content:'';position:fixed;inset:0;background:
-  radial-gradient(ellipse 70% 50% at 15% 0%, rgba(0,163,108,0.09) 0%, transparent 65%),
-  radial-gradient(ellipse 50% 40% at 85% 100%, rgba(59,111,234,0.07) 0%, transparent 65%);
-  pointer-events:none;}
-.login-box{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:42px 38px;width:100%;max-width:390px;box-shadow:var(--shadow-lg);position:relative;z-index:1;}
+#login-screen{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:42px 38px;width:100%;max-width:390px;box-shadow:var(--sh-lg);position:relative;z-index:1;}
 .login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;justify-content:center;}
-.login-logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#007a50);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 4px 14px rgba(0,163,108,0.25);}
-.login-logo-text{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:var(--text)}
+.login-logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#007a50);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;}
+.login-logo-text{font-size:1.35rem;font-weight:800;letter-spacing:-.03em}
 .login-logo-text span{color:var(--accent)}
 .login-box h2{text-align:center;font-size:.92rem;color:var(--text3);margin-bottom:26px;font-weight:500}
-.login-field{margin-bottom:16px}
-.login-field label{display:block;font-size:.75rem;color:var(--text2);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.login-field input{width:100%;padding:12px 16px;background:var(--surface2);border:1.5px solid var(--border);border-radius:11px;color:var(--text);font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .2s,box-shadow .2s;}
-.login-field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,0.12)}
-.login-err{color:var(--danger);font-size:.82rem;text-align:center;margin-bottom:12px;min-height:18px;font-weight:600}
-.login-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--accent),#007a50);border:none;border-radius:11px;color:#fff;font-weight:800;font-size:1rem;cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .15s,box-shadow .2s;margin-top:4px;box-shadow:0 4px 16px rgba(0,163,108,0.3);}
-.login-btn:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,163,108,0.4)}
+.lf{margin-bottom:16px}
+.lf label{display:block;font-size:.75rem;color:var(--text2);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.lf input{width:100%;padding:12px 16px;background:var(--surface2);border:1.5px solid var(--border);border-radius:11px;color:var(--text);font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .2s;}
+.lf input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,.12)}
+.l-err{color:var(--danger);font-size:.82rem;text-align:center;margin-bottom:12px;min-height:18px;font-weight:600}
+.l-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--accent),#007a50);border:none;border-radius:11px;color:#fff;font-weight:800;font-size:1rem;cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .15s;}
+.l-btn:hover{opacity:.92;transform:translateY(-1px)}
 
 /* HEADER */
-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 8px rgba(30,40,90,0.06);}
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 8px rgba(30,40,90,.06);}
 .logo{display:flex;align-items:center;gap:10px}
-.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#007a50);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;box-shadow:0 3px 10px rgba(0,163,108,0.22);}
-.logo-text{font-weight:800;font-size:1.1rem;letter-spacing:-0.03em;line-height:1;color:var(--text);}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#007a50);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.logo-text{font-weight:800;font-size:1.1rem;letter-spacing:-.03em}
 .logo-text span{color:var(--accent)}
-.header-badge{background:var(--surface2);border:1.5px solid var(--border);border-radius:20px;padding:5px 14px;font-size:0.75rem;color:var(--text2);}
-.header-badge b{color:var(--accent2);font-family:var(--mono)}
-.header-right{display:flex;gap:8px;align-items:center}
+.hbadge{background:var(--surface2);border:1.5px solid var(--border);border-radius:20px;padding:5px 14px;font-size:.75rem;color:var(--text2);}
+.hbadge b{color:var(--accent2);font-family:var(--mono)}
+.h-right{display:flex;gap:8px;align-items:center}
 
-.wrap{max-width:1120px;margin:0 auto;padding:24px 18px;position:relative;z-index:1}
+.wrap{max-width:1140px;margin:0 auto;padding:24px 18px;position:relative;z-index:1}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
-@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}}
-@media(max-width:420px){.stats{grid-template-columns:1fr}}
-.scard{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:18px 20px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s,box-shadow .2s;box-shadow:var(--shadow);}
-.scard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-.scard::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
-.scard.g::after{background:linear-gradient(90deg,var(--accent),#00b86c)}.scard.g:hover{border-color:var(--accent)}
-.scard.o::after{background:linear-gradient(90deg,var(--accent2),var(--warn))}.scard.o:hover{border-color:var(--accent2)}
-.scard.r::after{background:linear-gradient(90deg,var(--danger),#ff6060)}.scard.r:hover{border-color:var(--danger)}
-.scard.b::after{background:linear-gradient(90deg,var(--accent3),var(--gcash))}.scard.b:hover{border-color:var(--accent3)}
-.slabel{font-size:0.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:7px;font-weight:700}
-.sval{font-size:1.55rem;font-weight:800;font-family:var(--mono);letter-spacing:-.03em}
-.sval.g{color:var(--accent)}.sval.o{color:var(--accent2)}.sval.r{color:var(--danger)}.sval.b{color:var(--accent3)}
-.ssub{font-size:0.7rem;color:var(--text3);margin-top:3px;font-family:var(--mono)}
+.sc{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:18px 20px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:var(--sh);}
+.sc:hover{transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.sc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.sc.g::after{background:linear-gradient(90deg,var(--accent),#00b86c)}.sc.g:hover{border-color:var(--accent)}
+.sc.o::after{background:linear-gradient(90deg,var(--accent2),var(--warn))}.sc.o:hover{border-color:var(--accent2)}
+.sc.r::after{background:linear-gradient(90deg,var(--danger),#ff6060)}.sc.r:hover{border-color:var(--danger)}
+.sc.b::after{background:linear-gradient(90deg,var(--accent3),var(--gcash))}.sc.b:hover{border-color:var(--accent3)}
+.sl{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:7px;font-weight:700}
+.sv{font-size:1.55rem;font-weight:800;font-family:var(--mono);letter-spacing:-.03em}
+.sv.g{color:var(--accent)}.sv.o{color:var(--accent2)}.sv.r{color:var(--danger)}.sv.b{color:var(--accent3)}
+.ss{font-size:.7rem;color:var(--text3);margin-top:3px;font-family:var(--mono)}
 
-.banner{background:rgba(217,48,37,0.06);border:1.5px solid rgba(217,48,37,0.2);border-radius:13px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;font-size:0.83rem;}
-.banner strong{color:var(--danger)}.banner-txt{flex:1;color:var(--text2)}
+.banner{background:rgba(217,48,37,.06);border:1.5px solid rgba(217,48,37,.2);border-radius:13px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:12px;font-size:.83rem;}
+.banner strong{color:var(--danger)}.bntxt{flex:1;color:var(--text2)}
 
 .row-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
-.tabs{display:flex;gap:4px;background:var(--surface);border:1.5px solid var(--border);border-radius:11px;padding:4px;box-shadow:var(--shadow);}
-.tab{padding:7px 16px;border-radius:8px;border:none;background:transparent;color:var(--text2);font-family:var(--font);font-size:0.82rem;font-weight:600;cursor:pointer;transition:all .18s;}
-.tab.on{background:var(--accent);color:#fff;box-shadow:0 3px 10px rgba(0,163,108,0.25)}
+.tabs{display:flex;gap:4px;background:var(--surface);border:1.5px solid var(--border);border-radius:11px;padding:4px;box-shadow:var(--sh);}
+.tab{padding:7px 16px;border-radius:8px;border:none;background:transparent;color:var(--text2);font-family:var(--font);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .18s;}
+.tab.on{background:var(--accent);color:#fff;box-shadow:0 3px 10px rgba(0,163,108,.25)}
 .toolbar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;align-items:center}
-.search-wrap{flex:1;min-width:190px;position:relative}
-.search-wrap input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px 9px 36px;color:var(--text);font-family:var(--font);font-size:0.85rem;outline:none;transition:border-color .2s,box-shadow .2s;}
-.search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,0.10)}
-.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px}
-select.fsel{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;color:var(--text2);font-family:var(--font);font-size:0.82rem;outline:none;cursor:pointer;}
+.sw{flex:1;min-width:190px;position:relative}
+.sw input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px 9px 36px;color:var(--text);font-family:var(--font);font-size:.85rem;outline:none;transition:border-color .2s;}
+.sw input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,.10)}
+.si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px}
+select.fsel{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;color:var(--text2);font-family:var(--font);font-size:.82rem;outline:none;cursor:pointer;}
 
-.btn{padding:9px 16px;border-radius:9px;border:none;font-family:var(--font);font-weight:700;font-size:0.82rem;cursor:pointer;transition:all .16s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
-.btn-p{background:var(--accent);color:#fff;box-shadow:0 3px 12px rgba(0,163,108,0.22)}.btn-p:hover{background:#00b876;transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,163,108,0.32)}
+.btn{padding:9px 16px;border-radius:9px;border:none;font-family:var(--font);font-weight:700;font-size:.82rem;cursor:pointer;transition:all .16s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
+.btn-p{background:var(--accent);color:#fff}.btn-p:hover{background:#00b876;transform:translateY(-1px)}
 .btn-g{background:var(--surface);border:1.5px solid var(--border);color:var(--text2)}.btn-g:hover{border-color:var(--accent);color:var(--accent)}
 .btn-d{background:var(--danger);color:#fff}.btn-d:hover{background:#c42820}
-.btn-s{background:var(--gcash);color:#fff;box-shadow:0 3px 12px rgba(0,98,204,0.2)}.btn-s:hover{background:#0074f0;transform:translateY(-1px);box-shadow:0 5px 18px rgba(0,98,204,0.32)}
-.btn-sm{padding:7px 12px;font-size:0.78rem;border-radius:8px}
+.btn-s{background:var(--gcash);color:#fff}.btn-s:hover{background:#0074f0;transform:translateY(-1px)}
+.btn-sm{padding:7px 12px;font-size:.78rem;border-radius:8px}
 
-.tbl-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
-table{width:100%;border-collapse:collapse}
+/* TABLE */
+.tbl-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--sh);}
+table{width:100%;border-collapse:collapse;table-layout:fixed;}
+colgroup col.c1{width:22%}colgroup col.c2{width:12%}colgroup col.c3{width:14%}
+colgroup col.c4{width:12%}colgroup col.c5{width:12%}colgroup col.c6{width:12%}colgroup col.c7{width:16%}
 thead tr{background:var(--surface2);border-bottom:1.5px solid var(--border)}
-th{padding:11px 14px;text-align:left;font-size:0.67rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text3);font-weight:700;white-space:nowrap;}
-tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+th{padding:11px 14px;text-align:left;font-size:.67rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text3);font-weight:700;white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--border);transition:background .12s;}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--surface2)}
-td{padding:12px 14px;font-size:0.85rem;vertical-align:middle}
-.nm{font-weight:700;color:var(--text)}.ph{font-size:0.72rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
-.tbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
-.t-cash{background:rgba(0,163,108,.1);color:var(--accent);border:1px solid rgba(0,163,108,.2)}
-.t-gcash{background:rgba(0,98,204,.1);color:var(--gcash);border:1px solid rgba(0,98,204,.2)}
-.t-load{background:rgba(232,93,38,.1);color:var(--accent2);border:1px solid rgba(232,93,38,.2)}
+tbody tr.pr{background:rgba(0,133,90,.03)}
+tbody tr.pr:hover{background:rgba(0,133,90,.07)}
+td{padding:12px 14px;font-size:.85rem;vertical-align:middle;overflow:hidden;word-break:break-word;}
+
+.nm{font-weight:700;color:var(--text);line-height:1.3}
+.ph{font-size:.72rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
+.tbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
+.t-cash  {background:rgba(0,163,108,.1);color:var(--accent);border:1px solid rgba(0,163,108,.2)}
+.t-gcash {background:rgba(0,98,204,.1);color:var(--gcash);border:1px solid rgba(0,98,204,.2)}
+.t-load  {background:rgba(232,93,38,.1);color:var(--accent2);border:1px solid rgba(232,93,38,.2)}
 .t-cashin{background:rgba(59,111,234,.1);color:var(--accent3);border:1px solid rgba(59,111,234,.2)}
-.sbadge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.sbadge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
 .sbadge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .s-pending{background:rgba(224,123,0,.1);color:var(--warn);border:1px solid rgba(224,123,0,.25)}.s-pending::before{background:var(--warn)}
 .s-overdue{background:rgba(217,48,37,.1);color:var(--danger);border:1px solid rgba(217,48,37,.25)}.s-overdue::before{background:var(--danger);animation:blink 1s infinite}
-.s-paid{background:rgba(0,133,90,.1);color:var(--paid-color);border:1px solid rgba(0,133,90,.2)}.s-paid::before{background:var(--paid-color)}
+.s-paid   {background:rgba(0,133,90,.1);color:var(--paid-color);border:1px solid rgba(0,133,90,.2)}.s-paid::before{background:var(--paid-color)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.amt{font-family:var(--mono);font-weight:600}.amt.owed{color:var(--accent)}.amt.paid-amt{color:var(--text3);text-decoration:line-through}
-.int-note{font-size:0.68rem;color:var(--text3);font-family:var(--mono)}
-.ac-btn{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:13px;transition:all .14s;margin-right:3px;background:var(--surface2);}
-.ac-sms{color:var(--gcash);border-color:rgba(0,98,204,.2)}.ac-sms:hover{background:var(--gcash);color:#fff;border-color:var(--gcash);transform:scale(1.12)}
-.ac-pay{color:var(--accent);border-color:rgba(0,163,108,.2)}.ac-pay:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.12)}
-.ac-edit{color:var(--warn);border-color:rgba(224,123,0,.2)}.ac-edit:hover{background:var(--warn);color:#fff;border-color:var(--warn);transform:scale(1.12)}
-.ac-del{color:var(--danger);border-color:rgba(217,48,37,.15)}.ac-del:hover{background:var(--danger);color:#fff;border-color:var(--danger);transform:scale(1.12)}
-.empty{text-align:center;padding:55px 20px;color:var(--text3)}.empty .ei{font-size:2.8rem;margin-bottom:10px}.empty p{font-size:0.88rem}
+.amt{font-family:var(--mono);font-weight:700;font-size:.9rem}
+.amt.owed{color:var(--accent)}.amt.paid-a{color:var(--text3);text-decoration:line-through;font-weight:500}
+.int-n{font-size:.68rem;color:var(--text3);font-family:var(--mono);margin-top:2px}
+.td-d{font-family:var(--mono);font-size:.78rem;color:var(--text3)}
+.ac-wrap{display:flex;gap:4px;flex-wrap:wrap}
+.ab{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:13px;transition:all .14s;background:var(--surface2);}
+.ab.sms  {color:var(--gcash);border-color:rgba(0,98,204,.2)}.ab.sms:hover  {background:var(--gcash);color:#fff;border-color:var(--gcash);transform:scale(1.1)}
+.ab.pay  {color:var(--accent);border-color:rgba(0,163,108,.2)}.ab.pay:hover  {background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.1)}
+.ab.edit {color:var(--warn);border-color:rgba(224,123,0,.2)}.ab.edit:hover  {background:var(--warn);color:#fff;border-color:var(--warn);transform:scale(1.1)}
+.ab.del  {color:var(--danger);border-color:rgba(217,48,37,.15)}.ab.del:hover  {background:var(--danger);color:#fff;border-color:var(--danger);transform:scale(1.1)}
+.empty{text-align:center;padding:55px 20px;color:var(--text3)}
+.empty .ei{font-size:2.8rem;margin-bottom:10px}.empty p{font-size:.88rem}
 
-.overlay{position:fixed;inset:0;z-index:200;background:rgba(30,40,90,0.35);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s;}
+/* HISTORY */
+.hist-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.hist-hdr h2{font-weight:800;font-size:1.05rem;color:var(--text2)}
+.hi{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;margin-bottom:9px;display:flex;gap:12px;align-items:center;box-shadow:var(--sh);}
+.hi-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(0,163,108,.1);}
+.hi-body{flex:1;min-width:0}
+.hi-name{font-weight:700;font-size:.88rem;color:var(--text)}.hi-det{font-size:.74rem;color:var(--text3);margin-top:2px}
+.hi-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.hi-amt{font-family:var(--mono);font-weight:700;font-size:.92rem;color:var(--accent)}
+
+/* MODALS */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(30,40,90,.28);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s;}
 .overlay.on{opacity:1;pointer-events:all}
-.modal{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:26px;width:100%;max-width:460px;max-height:92vh;overflow-y:auto;transform:scale(.95) translateY(12px);transition:transform .24s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--shadow-lg);}
+.modal{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:26px;width:100%;max-width:460px;max-height:92vh;overflow-y:auto;transform:scale(.95) translateY(12px);transition:transform .24s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--sh-lg);}
 .overlay.on .modal{transform:scale(1) translateY(0)}
-.mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.mtitle{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--text)}
+.mhd{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.mtitle{font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:var(--text)}
 .mclose{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .14s;}
 .mclose:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
-.frow{margin-bottom:14px}
-.frow label{display:block;margin-bottom:5px;font-size:0.7rem;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
-.frow input,.frow select,.frow textarea{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-family:var(--font);font-size:0.88rem;outline:none;transition:border-color .2s,box-shadow .2s;}
-.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,163,108,0.10)}
-.frow textarea{resize:vertical;min-height:68px}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.mfoot{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;border-top:1.5px solid var(--border);padding-top:16px;}
-.sms-info{background:rgba(0,98,204,.05);border:1.5px solid rgba(0,98,204,.15);border-radius:11px;padding:11px 13px;font-size:0.77rem;color:var(--text2);margin-bottom:4px;line-height:1.55;}
+.fr{margin-bottom:14px}
+.fr label{display:block;margin-bottom:5px;font-size:.7rem;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
+.fr input,.fr select,.fr textarea{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-family:var(--font);font-size:.88rem;outline:none;transition:border-color .2s;}
+.fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(--accent)}
+.fr textarea{resize:vertical;min-height:68px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.mft{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;border-top:1.5px solid var(--border);padding-top:16px;}
+.sms-info{background:rgba(0,98,204,.05);border:1.5px solid rgba(0,98,204,.15);border-radius:11px;padding:11px 13px;font-size:.77rem;color:var(--text2);margin-bottom:4px;line-height:1.55;}
 .sms-info b{color:var(--accent3)}
-.sms-preview{background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px;margin:12px 0;font-size:0.82rem;line-height:1.6;color:var(--text);}
-.char-cnt{text-align:right;font-size:0.68rem;color:var(--text3);font-family:var(--mono);margin-top:3px}
-.hist-item{background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;margin-bottom:9px;display:flex;gap:12px;align-items:flex-start;}
-.hist-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(0,163,108,.1);}
-.hist-name{font-weight:700;font-size:0.88rem;color:var(--text)}.hist-detail{font-size:0.74rem;color:var(--text3);margin-top:2px}
-.hist-amt{font-family:var(--mono);font-weight:600;font-size:0.92rem;color:var(--accent);margin-left:auto}
+.sms-prev{background:var(--surface2);border:1.5px solid var(--border);border-radius:11px;padding:13px;margin:12px 0;font-size:.82rem;line-height:1.6;color:var(--text);white-space:pre-wrap;max-height:160px;overflow-y:auto;}
+.cc{text-align:right;font-size:.68rem;color:var(--text3);font-family:var(--mono);margin-top:3px}
 
-/* PAID ROW STYLE */
-tbody tr.paid-row{background:rgba(0,133,90,0.04);}
-tbody tr.paid-row:hover{background:rgba(0,133,90,0.08);}
-
+/* TOASTS */
 #toasts{position:fixed;bottom:20px;right:20px;z-index:500;display:flex;flex-direction:column;gap:7px}
-.toast{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:11px 16px;font-size:0.82rem;display:flex;align-items:center;gap:9px;animation:slideIn .28s ease;box-shadow:var(--shadow-lg);max-width:300px;color:var(--text);}
+.toast{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:11px 16px;font-size:.82rem;display:flex;align-items:center;gap:9px;animation:slin .28s ease;box-shadow:var(--sh-lg);max-width:300px;color:var(--text);}
 .toast.ok{border-color:var(--accent)}.toast.ok .ti{color:var(--accent)}
-.toast.err{border-color:var(--danger)}.toast.err .ti{color:var(--danger)}
-.toast.info{border-color:var(--gcash)}.toast.info .ti{color:var(--gcash)}
-@keyframes slideIn{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
+.toast.er{border-color:var(--danger)}.toast.er .ti{color:var(--danger)}
+.toast.in{border-color:var(--gcash)}.toast.in .ti{color:var(--gcash)}
+@keyframes slin{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--surface2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* RESPONSIVE */
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.stats{grid-template-columns:1fr}}
 @media(max-width:640px){
-  td.hide-sm,th.hide-sm{display:none}
-  .header-badge{display:none}
-  header{padding:0 14px}
+  header{padding:0 14px}.hbadge{display:none}
   .login-box{padding:32px 22px;margin:16px;border-radius:16px;}
-  .tbl-wrap{border-radius:12px}
-  table thead{display:none}
-  table tbody tr{
-    display:flex;flex-direction:column;
-    padding:14px 14px;gap:6px;
-    border-bottom:1px solid var(--border);
+  /* Mobile card layout */
+  .tbl-wrap{background:transparent;border:none;box-shadow:none;border-radius:0}
+  table,tbody{display:block}
+  thead{display:none}
+  tbody{display:flex;flex-direction:column;gap:10px}
+  tbody tr{
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-rows:auto auto auto;
+    row-gap:8px;column-gap:10px;
+    background:var(--surface);border:1.5px solid var(--border);
+    border-radius:14px;padding:14px;box-shadow:var(--sh);
   }
-  table tbody tr:last-child{border-bottom:none}
-  table tbody td{padding:0;border:none;font-size:0.85rem}
-  .mob-row-top{display:flex;justify-content:space-between;align-items:flex-start}
-  .mob-row-mid{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .mob-row-bot{display:flex;justify-content:space-between;align-items:center}
-  td[onclick]{display:flex;gap:4px;justify-content:flex-end}
+  tbody tr.pr{background:rgba(0,133,90,.03)}
+  td{padding:0;border:none}
+  /* grid positions */
+  .td-n {grid-column:1;grid-row:1}
+  .td-t {grid-column:1;grid-row:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .td-a {display:none}  /* hidden; shown via mob-amt span inside td-t */
+  .td-d1{display:none}  /* date hidden on mobile */
+  .td-d2{display:none}  /* due hidden on mobile */
+  .td-s {grid-column:2;grid-row:1;display:flex;justify-content:flex-end;align-items:flex-start}
+  .td-ac{grid-column:1/-1;grid-row:3;border-top:1px solid var(--border);padding-top:10px}
+  .ac-wrap{justify-content:flex-end}
+  .mob-show{display:inline !important}
 }
+@media(min-width:641px){.mob-show{display:none}}
 </style>
 </head>
 <body>
+
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">
@@ -203,43 +214,40 @@ tbody tr.paid-row:hover{background:rgba(0,133,90,0.08);}
       <div class="login-logo-text">Lista ni <span>James Hope</span></div>
     </div>
     <h2>Mag-login para magpatuloy</h2>
-    <div class="login-field">
-      <label>Username</label>
-      <input type="text" id="l-user" placeholder="username" autocomplete="username">
-    </div>
-    <div class="login-field">
-      <label>Password</label>
-      <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
-    <div class="login-err" id="l-err"></div>
-    <button class="login-btn" onclick="doLogin()">🔐 Login</button>
+    <div class="lf"><label>Username</label><input type="text" id="l-user" placeholder="username" autocomplete="username"></div>
+    <div class="lf"><label>Password</label><input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="l-err" id="l-err"></div>
+    <button class="l-btn" onclick="doLogin()">🔐 Login</button>
   </div>
 </div>
 
+<!-- HEADER -->
 <header>
   <div class="logo">
     <div class="logo-icon">💸</div>
     <div class="logo-text">Lista ni <span>James Hope</span></div>
   </div>
-  <div class="header-right">
-    <div class="header-badge">Dapat Bayad: <b id="hdr-total">₱0</b></div>
-    <button class="btn" style="background:var(--surface2);color:var(--text2);border:1.5px solid var(--border);padding:7px 14px;font-size:.82rem" onclick="doLogout()">🚪 Logout</button>
+  <div class="h-right">
+    <div class="hbadge">Dapat Bayad: <b id="hdr-total">₱0</b></div>
+    <button class="btn btn-g btn-sm" onclick="doLogout()">🚪 Logout</button>
     <button class="btn btn-p" onclick="openAdd()">➕ Bagong Utang</button>
   </div>
 </header>
 
 <div class="wrap">
   <div class="stats">
-    <div class="scard g"><div class="slabel">Total na Inutang</div><div class="sval g" id="st-total">₱0</div><div class="ssub" id="st-count">0 tao</div></div>
-    <div class="scard o"><div class="slabel">Hindi Pa Bayad</div><div class="sval o" id="st-pending">₱0</div><div class="ssub" id="st-pcnt">0 utang</div></div>
-    <div class="scard r"><div class="slabel">Overdue Na!</div><div class="sval r" id="st-overdue">₱0</div><div class="ssub" id="st-ocnt">0 utang</div></div>
-    <div class="scard b"><div class="slabel">Nabayad Na</div><div class="sval b" id="st-paid">₱0</div><div class="ssub" id="st-paidcnt">0 utang</div></div>
+    <div class="sc g"><div class="sl">Total na Inutang</div><div class="sv g" id="st-total">₱0</div><div class="ss" id="st-count">0 tao</div></div>
+    <div class="sc o"><div class="sl">Hindi Pa Bayad</div><div class="sv o" id="st-pending">₱0</div><div class="ss" id="st-pcnt">0 utang</div></div>
+    <div class="sc r"><div class="sl">Overdue Na!</div><div class="sv r" id="st-overdue">₱0</div><div class="ss" id="st-ocnt">0 utang</div></div>
+    <div class="sc b"><div class="sl">Nabayad Na</div><div class="sv b" id="st-paid">₱0</div><div class="ss" id="st-paidcnt">0 utang</div></div>
   </div>
+
   <div class="banner" id="banner" style="display:none">
     <span style="font-size:1.2rem">🚨</span>
-    <div class="banner-txt"><strong id="banner-txt">May overdue!</strong> — I-send ang SMS reminder ngayon.</div>
+    <div class="bntxt"><strong id="banner-txt">May overdue!</strong> — I-send ang SMS reminder ngayon.</div>
     <button class="btn btn-s btn-sm" onclick="openBlast(true)">📱 Send Lahat</button>
   </div>
+
   <div class="row-flex">
     <div class="tabs">
       <button class="tab on" onclick="switchTab('all',this)">Lahat</button>
@@ -249,74 +257,122 @@ tbody tr.paid-row:hover{background:rgba(0,133,90,0.08);}
     </div>
     <button class="btn btn-s btn-sm" onclick="openBlast(false)">📡 SMS Blast</button>
   </div>
+
   <div class="toolbar">
-    <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="srch" placeholder="Hanapin pangalan o numero..." oninput="renderTable()"></div>
+    <div class="sw"><span class="si">🔍</span><input type="text" id="srch" placeholder="Hanapin pangalan o numero..." oninput="renderTable()"></div>
     <select class="fsel" id="f-type" onchange="renderTable()">
-      <option value="">Lahat ng Uri</option><option value="cash">💵 Cash</option><option value="gcash">💙 GCash</option><option value="load">📱 Load</option><option value="cashin">🏧 Cash In</option>
+      <option value="">Lahat ng Uri</option>
+      <option value="cash">💵 Cash</option><option value="gcash">💙 GCash</option>
+      <option value="load">📱 Load</option><option value="cashin">🏧 Cash In</option>
     </select>
     <select class="fsel" id="f-sort" onchange="renderTable()">
-      <option value="newest">Pinakabago</option><option value="oldest">Pinakamatanda</option><option value="highest">Pinakamataas</option><option value="lowest">Pinakamababa</option><option value="name">Pangalan A-Z</option>
+      <option value="newest">Pinakabago</option><option value="oldest">Pinakamatanda</option>
+      <option value="highest">Pinakamataas</option><option value="lowest">Pinakamababa</option>
+      <option value="name">Pangalan A-Z</option>
     </select>
   </div>
+
   <div class="tbl-wrap">
     <table>
-      <thead><tr><th>Pangalan</th><th>Uri</th><th>Halaga</th><th class="hide-sm">Petsa ng Utang</th><th class="hide-sm">Due Date</th><th>Status</th><th>Aksyon</th></tr></thead>
+      <colgroup>
+        <col class="c1"><col class="c2"><col class="c3">
+        <col class="c4"><col class="c5"><col class="c6"><col class="c7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Pangalan</th><th>Uri</th><th>Halaga</th>
+          <th>Petsa ng Utang</th><th>Due Date</th><th>Status</th><th>Aksyon</th>
+        </tr>
+      </thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
-  <div id="hist-section" style="margin-top:28px;display:none">
-    <h2 style="font-weight:800;font-size:1.05rem;margin-bottom:14px;color:var(--text2)">📋 History ng Bayad</h2>
+
+  <div id="hist-section" style="display:none;margin-top:28px">
+    <div class="hist-hdr">
+      <h2>📋 History ng Bayad</h2>
+    </div>
     <div id="hist-list"></div>
   </div>
 </div>
 
 <!-- ADD/EDIT MODAL -->
-<div class="overlay" id="add-overlay"><div class="modal">
-  <div class="mhead"><div class="mtitle" id="modal-title">➕ Bagong Utang</div><button class="mclose" onclick="closeOverlay('add-overlay')">✕</button></div>
-  <div class="fgrid">
-    <div class="frow"><label>Pangalan *</label><input type="text" id="f-name" placeholder="Juan dela Cruz"></div>
-    <div class="frow"><label>Numero ng Telepono *</label><input type="tel" id="f-phone" placeholder="09xxxxxxxxx" maxlength="11"></div>
+<div class="overlay" id="add-ov"><div class="modal">
+  <div class="mhd"><div class="mtitle" id="mtitle">➕ Bagong Utang</div><button class="mclose" onclick="closeOv('add-ov')">✕</button></div>
+  <div class="fg">
+    <div class="fr"><label>Pangalan *</label><input type="text" id="f-name" placeholder="Juan dela Cruz"></div>
+    <div class="fr"><label>Numero ng Telepono *</label><input type="tel" id="f-phone" placeholder="09xxxxxxxxx" maxlength="11"></div>
   </div>
-  <div class="fgrid">
-    <div class="frow"><label>Halaga (₱) *</label><input type="number" id="f-amount" placeholder="500" min="1"></div>
-    <div class="frow"><label>Uri ng Transaksyon</label><select id="f-txn"><option value="cash">💵 Cash Pautang</option><option value="gcash">💙 GCash Pautang</option><option value="load">📱 Load</option><option value="cashin">🏧 GCash Cash In</option></select></div>
+  <div class="fg">
+    <div class="fr"><label>Halaga (₱) *</label><input type="number" id="f-amount" placeholder="500" min="1"></div>
+    <div class="fr"><label>Uri ng Transaksyon</label>
+      <select id="f-txn">
+        <option value="cash">💵 Cash Pautang</option><option value="gcash">💙 GCash Pautang</option>
+        <option value="load">📱 Load</option><option value="cashin">🏧 GCash Cash In</option>
+      </select>
+    </div>
   </div>
-  <div class="fgrid">
-    <div class="frow"><label>Petsa ng Utang</label><input type="date" id="f-date"></div>
-    <div class="frow"><label>Due Date</label><input type="date" id="f-due"></div>
+  <div class="fg">
+    <div class="fr"><label>Petsa ng Utang</label><input type="date" id="f-date"></div>
+    <div class="fr"><label>Due Date</label><input type="date" id="f-due"></div>
   </div>
-  <div class="frow"><label>Interes / Dagdag na Bayad (₱)</label><input type="number" id="f-interest" placeholder="0" min="0"></div>
-  <div class="frow"><label>Tala / Pangako</label><textarea id="f-notes" placeholder="Ex: Babayaran sa Sabado..."></textarea></div>
-  <div class="mfoot"><button class="btn btn-g" onclick="closeOverlay('add-overlay')">Kanselahin</button><button class="btn btn-p" onclick="saveEntry()">💾 I-Save</button></div>
+  <div class="fr"><label>Interes / Dagdag na Bayad (₱)</label><input type="number" id="f-interest" placeholder="0" min="0"></div>
+  <div class="fr"><label>Tala / Pangako</label><textarea id="f-notes" placeholder="Ex: Babayaran sa Sabado..."></textarea></div>
+  <div class="mft">
+    <button class="btn btn-g" onclick="closeOv('add-ov')">Kanselahin</button>
+    <button class="btn btn-p" onclick="saveEntry()">💾 I-Save</button>
+  </div>
 </div></div>
 
 <!-- SMS MODAL -->
-<div class="overlay" id="sms-overlay"><div class="modal">
-  <div class="mhead"><div class="mtitle">📱 Mag-send ng SMS</div><button class="mclose" onclick="closeOverlay('sms-overlay')">✕</button></div>
-  <div class="frow"><label>Para kay</label><input type="text" id="sms-to" readonly style="background:var(--bg)"></div>
-  <div class="frow"><label>Numero</label><input type="text" id="sms-ph" readonly style="background:var(--bg);font-family:var(--mono)"></div>
-  <div class="frow"><label>Template ng Mensahe</label>
+<div class="overlay" id="sms-ov"><div class="modal">
+  <div class="mhd"><div class="mtitle">📱 Mag-send ng SMS</div><button class="mclose" onclick="closeOv('sms-ov')">✕</button></div>
+  <div class="fg">
+    <div class="fr"><label>Para kay</label><input type="text" id="sms-to" readonly style="background:var(--surface2)"></div>
+    <div class="fr"><label>Numero</label><input type="text" id="sms-ph" readonly style="background:var(--surface2);font-family:var(--mono)"></div>
+  </div>
+  <div class="fr"><label>Template ng Mensahe</label>
     <select id="sms-tmpl" onchange="applyTmpl()">
-      <option value="reminder">🔔 Reminder ng Utang</option><option value="overdue">🚨 Overdue Notice</option>
-      <option value="gentle">😊 Malambing na Paalala</option><option value="final">⚠️ Huling Babala</option>
-      <option value="gcash">💙 GCash Request</option><option value="partial">💰 Partial Payment OK</option>
-      <option value="followup">📞 Follow-up</option><option value="goodvibes">🌟 Good Vibes</option>
-      <option value="tagalog">🇵🇭 Pormal na Tagalog</option><option value="bisaya">🌊 Bisaya</option>
-      <option value="thankyou">🙏 Salamat sa Bayad</option><option value="receipt">🧾 Receipt ng Bayad</option>
-      <option value="custom">✏️ Custom</option>
+      <optgroup label="── Para sa May Utang Pa ──">
+        <option value="reminder">🔔 Reminder ng Utang</option>
+        <option value="overdue">🚨 Overdue Notice</option>
+        <option value="gentle">😊 Malambing na Paalala</option>
+        <option value="final">⚠️ Huling Babala</option>
+        <option value="gcash">💙 GCash Request</option>
+        <option value="partial">💰 Partial Payment OK</option>
+        <option value="followup">📞 Follow-up</option>
+        <option value="goodvibes">🌟 Good Vibes</option>
+        <option value="tagalog">🇵🇭 Pormal na Tagalog</option>
+        <option value="bisaya">🌊 Bisaya</option>
+      </optgroup>
+      <optgroup label="── Para sa Nakabayad Na ✅ ──">
+        <option value="thankyou">🙏 Salamat sa Bayad</option>
+        <option value="receipt">🧾 Receipt ng Bayad</option>
+        <option value="goodjob">⭐ Magaling! Bayad On-time</option>
+      </optgroup>
+      <optgroup label="────────────────">
+        <option value="custom">✏️ Custom</option>
+      </optgroup>
     </select>
   </div>
-  <div class="frow"><label>Mensahe</label><textarea id="sms-msg" rows="5" oninput="updChar()"></textarea><div class="char-cnt"><span id="sms-chars">0</span>/160 chars</div></div>
-  <div class="sms-preview" id="sms-prev"></div>
-  <div class="sms-info">📱 <b>Paano gamitin:</b> Buksan sa <b>phone browser</b>. I-click ang <b>"📲 Send SMS"</b> — mag-oopen ang SMS app na may pre-filled na mensahe. I-tap lang ang Send!</div>
-  <div class="mfoot"><button class="btn btn-g" onclick="closeOverlay('sms-overlay')">Kanselahin</button><button class="btn btn-p btn-sm" onclick="copySMS()">📋 Copy</button><button class="btn btn-s" onclick="sendViaSemaphore()">📲 Send SMS</button></div>
+  <div class="fr"><label>Mensahe</label>
+    <textarea id="sms-msg" rows="7" oninput="updChar()"></textarea>
+    <div class="cc"><span id="sms-chars">0</span>/160 chars</div>
+  </div>
+  <div class="sms-prev" id="sms-prev"></div>
+  <div class="sms-info">📱 <b>Paano gamitin:</b> Buksan sa <b>phone browser</b>. I-click ang <b>"📲 Send SMS"</b> — mag-oopen ang SMS app na may pre-filled na mensahe.</div>
+  <div class="mft">
+    <button class="btn btn-g" onclick="closeOv('sms-ov')">Kanselahin</button>
+    <button class="btn btn-g btn-sm" onclick="copySMS()">📋 Copy</button>
+    <button class="btn btn-s" onclick="sendSMS()">📲 Send SMS</button>
+  </div>
 </div></div>
 
 <!-- SMS BLAST MODAL -->
-<div class="overlay" id="blast-overlay"><div class="modal">
-  <div class="mhead"><div class="mtitle">📡 SMS Blast</div><button class="mclose" onclick="closeOverlay('blast-overlay')">✕</button></div>
-  <div id="blast-list" style="max-height:280px;overflow-y:auto;margin-bottom:14px"></div>
-  <div class="frow"><label>Template</label>
+<div class="overlay" id="blast-ov"><div class="modal">
+  <div class="mhd"><div class="mtitle">📡 SMS Blast</div><button class="mclose" onclick="closeOv('blast-ov')">✕</button></div>
+  <div id="blast-list" style="max-height:240px;overflow-y:auto;margin-bottom:14px"></div>
+  <div class="fr"><label>Template</label>
     <select id="blast-tmpl" onchange="updBlastPrev()">
       <option value="reminder">🔔 Reminder ng Utang</option><option value="overdue">🚨 Overdue Notice</option>
       <option value="gentle">😊 Malambing na Paalala</option><option value="final">⚠️ Huling Babala</option>
@@ -325,334 +381,370 @@ tbody tr.paid-row:hover{background:rgba(0,133,90,0.08);}
       <option value="tagalog">🇵🇭 Pormal na Tagalog</option><option value="bisaya">🌊 Bisaya</option>
     </select>
   </div>
-  <div class="sms-preview" id="blast-prev"></div>
-  <div style="font-size:0.75rem;color:var(--text3);margin:6px 0 12px">ℹ️ Isa-isang mag-oopen ang SMS app para sa bawat tao.</div>
-  <div class="mfoot"><button class="btn btn-g" onclick="closeOverlay('blast-overlay')">Kanselahin</button><button class="btn btn-s" id="blast-btn" onclick="blastNext()">📲 Send SMS</button></div>
+  <div class="sms-prev" id="blast-prev"></div>
+  <div style="font-size:.75rem;color:var(--text3);margin:6px 0 12px">ℹ️ Isa-isang mag-oopen ang SMS app para sa bawat tao.</div>
+  <div class="mft">
+    <button class="btn btn-g" onclick="closeOv('blast-ov')">Kanselahin</button>
+    <button class="btn btn-s" id="blast-btn" onclick="blastNext()">📲 Send SMS</button>
+  </div>
 </div></div>
 
 <!-- CONFIRM MODAL -->
-<div class="overlay" id="confirm-overlay"><div class="modal" style="max-width:360px">
-  <div class="mhead"><div class="mtitle" id="conf-title">Kumpirmahin</div><button class="mclose" onclick="closeOverlay('confirm-overlay')">✕</button></div>
-  <p id="conf-msg" style="color:var(--text2);font-size:0.88rem;line-height:1.6"></p>
-  <div class="mfoot"><button class="btn btn-g" onclick="closeOverlay('confirm-overlay')">Hindi</button><button class="btn btn-d" id="conf-ok">Oo, Ituloy</button></div>
+<div class="overlay" id="conf-ov"><div class="modal" style="max-width:360px">
+  <div class="mhd"><div class="mtitle" id="conf-title">Kumpirmahin</div><button class="mclose" onclick="closeOv('conf-ov')">✕</button></div>
+  <p id="conf-msg" style="color:var(--text2);font-size:.88rem;line-height:1.6"></p>
+  <div class="mft">
+    <button class="btn btn-g" onclick="closeOv('conf-ov')">Hindi</button>
+    <button class="btn btn-d" id="conf-ok">Oo, Ituloy</button>
+  </div>
 </div></div>
 
 <div id="toasts"></div>
 
 <script>
-const STORAGE_KEY = 'utang-lista-v2';
-const HISTORY_KEY = 'utang-hist-v2';
-const SESSION_KEY = 'lista-session';
-const DEFAULT_USER = 'itsmehope';
-const DEFAULT_PASS = 'itsmehope';
-const BIN_ID  = '69dcfd03aaba882197f46e6e';
-const BIN_KEY = '$2a$10$g2lVJd07m0cutlfVI7W7XebVCAQ34rtVOLCgQrwaXcx2NPl8ky2bO';
-const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-const BIN_HDR = { 'Content-Type':'application/json', 'X-Master-Key': BIN_KEY };
-const SENDER  = 'James Hope'; // ← Sender name sa lahat ng SMS
+const SK='utang-lista-v2', HK='utang-hist-v2', SEK='lista-session';
+const DU='itsmehope', DP='itsmehope';
+const BIN_ID='69dcfd03aaba882197f46e6e';
+const BIN_KEY='$2a$10$g2lVJd07m0cutlfVI7W7XebVCAQ34rtVOLCgQrwaXcx2NPl8ky2bO';
+const BIN_URL=`https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const BHDRS={'Content-Type':'application/json','X-Master-Key':BIN_KEY};
+const SENDER='James Hope';
 
-let utangList = [], payHistory = [], editId = null, curTab = 'all', curSMSId = null, blastQ = [], blastIdx = 0;
+let UL=[], PH=[], editId=null, curTab='all', curSMSId=null, blastQ=[], blastIdx=0;
 
-// ===== AUTH =====
-function doLogin() {
-  const u = document.getElementById('l-user').value.trim();
-  const p = document.getElementById('l-pass').value;
-  const saved = JSON.parse(localStorage.getItem('lista-creds') || 'null');
-  const validUser = saved ? saved.user : DEFAULT_USER;
-  const validPass = saved ? saved.pass : DEFAULT_PASS;
-  if (u === validUser && p === validPass) {
-    localStorage.setItem(SESSION_KEY, '1');
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('l-err').textContent = '';
-  } else {
-    document.getElementById('l-err').textContent = '❌ Mali ang username o password!';
-    document.getElementById('l-pass').value = '';
+/* ── AUTH ── */
+function doLogin(){
+  const u=v('l-user').trim(), p=v('l-pass');
+  const s=JSON.parse(localStorage.getItem('lista-creds')||'null');
+  if(u===(s?s.user:DU)&&p===(s?s.pass:DP)){
+    localStorage.setItem(SEK,'1');
+    el('login-screen').style.display='none';
+    el('l-err').textContent='';
+  } else { el('l-err').textContent='❌ Mali ang username o password!'; el('l-pass').value=''; }
+}
+function doLogout(){
+  localStorage.removeItem(SEK);
+  el('login-screen').style.display='flex';
+  el('l-user').value=''; el('l-pass').value='';
+}
+function checkSess(){ if(localStorage.getItem(SEK)==='1') el('login-screen').style.display='none'; }
+
+/* ── CLOUD ── */
+async function cloudLoad(){
+  try{
+    const r=await fetch(BIN_URL+'/latest',{headers:BHDRS});
+    const d=await r.json();
+    return d.record||{utangList:[],payHistory:[]};
+  } catch(e){
+    return {
+      utangList:JSON.parse(localStorage.getItem(SK)||'[]'),
+      payHistory:JSON.parse(localStorage.getItem(HK)||'[]')
+    };
   }
 }
-function doLogout() {
-  localStorage.removeItem(SESSION_KEY);
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('l-user').value = '';
-  document.getElementById('l-pass').value = '';
-  document.getElementById('l-err').textContent = '';
-}
-function checkSession() {
-  if (localStorage.getItem(SESSION_KEY) === '1') document.getElementById('login-screen').style.display = 'none';
-}
-
-// ===== CLOUD =====
-async function cloudLoad() {
-  try {
-    const res = await fetch(BIN_URL + '/latest', { headers: BIN_HDR });
-    const data = await res.json();
-    return data.record || { utangList:[], payHistory:[] };
-  } catch(e) {
-    const u = localStorage.getItem(STORAGE_KEY);
-    const p = localStorage.getItem(HISTORY_KEY);
-    return { utangList: u ? JSON.parse(u) : [], payHistory: p ? JSON.parse(p) : [] };
+async function cloudSave(){
+  try{
+    await fetch(BIN_URL,{method:'PUT',headers:BHDRS,body:JSON.stringify({utangList:UL,payHistory:PH})});
+    localStorage.setItem(SK,JSON.stringify(UL));
+    localStorage.setItem(HK,JSON.stringify(PH));
+  } catch(e){
+    localStorage.setItem(SK,JSON.stringify(UL));
+    localStorage.setItem(HK,JSON.stringify(PH));
+    toast('Offline — na-save sa device lang','in');
   }
 }
-async function cloudSave() {
-  try {
-    await fetch(BIN_URL, { method:'PUT', headers:BIN_HDR, body:JSON.stringify({ utangList, payHistory }) });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(utangList));
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(payHistory));
-  } catch(e) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(utangList));
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(payHistory));
-    toast('Offline — na-save sa device lang', 'info');
-  }
-}
-async function loadData() {
-  try {
-    toast('Nilo-load ang data...', 'info');
-    const data = await cloudLoad();
-    utangList = data.utangList || [];
-    payHistory = data.payHistory || [];
-  } catch(e) { utangList = []; payHistory = []; }
+async function loadData(){
+  toast('Nilo-load ang data...','in');
+  try{ const d=await cloudLoad(); UL=d.utangList||[]; PH=d.payHistory||[]; }
+  catch(e){ UL=[]; PH=[]; }
   renderTable();
 }
-async function save() { await cloudSave(); }
+async function save(){ await cloudSave(); }
 
-// ===== SMS TEMPLATES (lahat may SENDER name) =====
-const tmpl = {
-  reminder:  u => `Magandang araw, ${u.name}! Paalala lang na mayroon kang utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} sa amin. Due date: ${u.due||'ASAP'}. Pakiayos na po. Salamat! 🙏\n— ${SENDER}`,
-  overdue:   u => `URGENT: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay OVERDUE na (due: ${u.due||'nakaraan'}). Pakibayad na agad. Salamat!\n— ${SENDER}`,
-  gentle:    u => `Hi ${u.name}! Kamusta? Nais ko lang ipaalala na may utang ka pa sa amin na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Kailan mo ito mababayaran? Salamat at ingat! 😊\n— ${SENDER}`,
-  final:     u => `HULING BABALA: ${u.name}, ang iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} ay hindi pa nabayaran. Pakiusap na makipag-ugnayan agad. Salamat.\n— ${SENDER}`,
-  gcash:     u => `Hi ${u.name}! Pwede mo na i-send ang ₱${(u.amount+(u.interest||0)).toLocaleString()} mo sa GCash namin. Salamat! 💙\n— ${SENDER}`,
-  partial:   u => `Hi ${u.name}! Okay lang kahit partial muna ang bayad para sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Makipag-ugnayan ka lang sa amin. Salamat! 🙏\n— ${SENDER}`,
-  followup:  u => `${u.name}, follow-up lang ako sa iyong utang na ₱${(u.amount+(u.interest||0)).toLocaleString()} (due: ${u.due||'ASAP'}). Sana maayos na natin ito. Salamat!\n— ${SENDER}`,
-  goodvibes: u => `Hey ${u.name}! 😊 Wala akong masama sa iyo ha, paalala lang — may ₱${(u.amount+(u.interest||0)).toLocaleString()} kang utang sa amin. Kahit kailan mo mabayaran, I-message mo lang kami. Salamat! 🙏✨\n— ${SENDER}`,
-  tagalog:   u => `Mahal na ${u.name}, nais naming ipaabot na ang inyong utang na nagkakahalaga ng ₱${(u.amount+(u.interest||0)).toLocaleString()} ay dapat na sanang mabayaran noong ${u.due||'nakaraang petsa'}. Umaasa kaming makapag-usap kayo sa amin. Maraming salamat po.\n— ${SENDER}`,
-  bisaya:    u => `${u.name}, pahibaw lang nga naa kay utang nga ₱${(u.amount+(u.interest||0)).toLocaleString()} kanamo. Palihug bayri na kung mahimo. Salamat kaayo! 🙏\n— ${SENDER}`,
-  // ===== NEW: Para sa PAID na customers =====
-  thankyou:  u => `Salamat, ${u.name}! Natanggap na namin ang iyong bayad na ₱${(u.amount+(u.interest||0)).toLocaleString()}. Wala ka nang utang sa amin. Ingat lagi! 🙏✅\n— ${SENDER}`,
-  receipt:   u => `🧾 RESIBO NG BAYAD\nPangalan: ${u.name}\nHalaga: ₱${(u.amount+(u.interest||0)).toLocaleString()}\nPetsa ng bayad: ${u.paidDate||new Date().toISOString().split('T')[0]}\nStatus: BAYAD NA ✅\nSalamat sa iyong katapatan!\n— ${SENDER}`,
+/* ── TEMPLATES ── */
+const T={
+  reminder:  x=>`Magandang araw, ${x.name}!\n\nPaalala lang na mayroon kang utang na ₱${tot(x)} sa amin.\nDue date: ${x.due||'ASAP'}.\n\nPakiayos na po. Salamat! 🙏\n— ${SENDER}`,
+  overdue:   x=>`URGENT: ${x.name},\n\nAng iyong utang na ₱${tot(x)} ay OVERDUE na (due: ${x.due||'nakaraan'}).\n\nPakibayad na agad. Salamat!\n— ${SENDER}`,
+  gentle:    x=>`Hi ${x.name}! Kamusta? 😊\n\nNais ko lang ipaalala na may utang ka pa sa amin na ₱${tot(x)}.\n\nKailan mo ito mababayaran? Salamat at ingat!\n— ${SENDER}`,
+  final:     x=>`⚠️ HULING BABALA\n${x.name}, ang iyong utang na ₱${tot(x)} ay hindi pa nabayaran.\n\nPakiusap na makipag-ugnayan agad.\n— ${SENDER}`,
+  gcash:     x=>`Hi ${x.name}! 💙\n\nPwede mo na i-send ang ₱${tot(x)} sa GCash namin.\n\nSalamat!\n— ${SENDER}`,
+  partial:   x=>`Hi ${x.name}!\n\nOkay lang kahit partial muna ang bayad para sa iyong utang na ₱${tot(x)}.\n\nMakipag-ugnayan ka lang. Salamat! 🙏\n— ${SENDER}`,
+  followup:  x=>`${x.name}, follow-up lang sa iyong utang na ₱${tot(x)} (due: ${x.due||'ASAP'}).\n\nSana maayos na natin ito. Salamat!\n— ${SENDER}`,
+  goodvibes: x=>`Hey ${x.name}! 🌟\n\nWala akong masama sa iyo — paalala lang, may ₱${tot(x)} kang utang sa amin.\n\nKahit kailan mo mabayaran, I-message mo lang. Salamat! 🙏\n— ${SENDER}`,
+  tagalog:   x=>`Mahal na ${x.name},\n\nNais naming ipaabot na ang inyong utang na ₱${tot(x)} ay dapat na sanang mabayaran noong ${x.due||'nakaraang petsa'}.\n\nMaraming salamat po.\n— ${SENDER}`,
+  bisaya:    x=>`${x.name},\n\nPahibaw lang nga naa kay utang nga ₱${tot(x)} kanamo.\nPalihug bayri na kung mahimo.\n\nSalamat kaayo! 🙏\n— ${SENDER}`,
+  thankyou:  x=>`Salamat, ${x.name}! ✅🙏\n\nNatanggap na namin ang iyong bayad na ₱${tot(x)}.\nWala ka nang utang sa amin.\n\nIngat lagi!\n— ${SENDER}`,
+  receipt:   x=>`🧾 RESIBO NG BAYAD\n\nPangalan : ${x.name}\nHalaga   : ₱${tot(x)}\nPetsa    : ${x.paidDate||today()}\nStatus   : ✅ BAYAD NA\n\nSalamat sa iyong katapatan!\n— ${SENDER}`,
+  goodjob:   x=>`⭐ ${x.name}, magaling!\n\nNa-bayad mo ang iyong ₱${tot(x)} on-time.\nSalamat sa pagiging mabuting bayador!\n\nHanggang sa susunod! 😊\n— ${SENDER}`,
 };
+const tot=x=>(x.amount+(x.interest||0)).toLocaleString();
+const today=()=>new Date().toISOString().split('T')[0];
+const el=id=>document.getElementById(id);
+const v=id=>el(id).value;
 
-// ===== RENDER =====
-const typeLabel={cash:'💵 Cash',gcash:'💙 GCash',load:'📱 Load',cashin:'🏧 Cash In'};
-const typeClass={cash:'t-cash',gcash:'t-gcash',load:'t-load',cashin:'t-cashin'};
-const statLabel={pending:'Pending',overdue:'OVERDUE',paid:'Nabayad'};
-const statClass={pending:'s-pending',overdue:'s-overdue',paid:'s-paid'};
+/* ── LABELS ── */
+const TL={cash:'💵 Cash',gcash:'💙 GCash',load:'📱 Load',cashin:'🏧 Cash In'};
+const TC={cash:'t-cash',gcash:'t-gcash',load:'t-load',cashin:'t-cashin'};
+const SL={pending:'Pending',overdue:'OVERDUE',paid:'Nabayad'};
+const SC={pending:'s-pending',overdue:'s-overdue',paid:'s-paid'};
 
-function getList() {
-  const s=document.getElementById('srch').value.toLowerCase();
-  const tf=document.getElementById('f-type').value;
-  const sf=document.getElementById('f-sort').value;
-  let list=utangList.filter(u=>{
-    if(u.status==='pending'&&u.due&&new Date(u.due)<new Date()) u.status='overdue';
-    return (curTab==='all'||u.status===curTab)&&(u.name.toLowerCase().includes(s)||u.phone.includes(s))&&(!tf||u.type===tf);
+function chkOD(u){ if(u.status==='pending'&&u.due&&new Date(u.due)<new Date()) u.status='overdue'; }
+
+function getList(){
+  const s=v('srch').toLowerCase(), tf=v('f-type'), sf=v('f-sort');
+  let L=UL.filter(u=>{
+    chkOD(u);
+    return (curTab==='all'||u.status===curTab)
+      &&(u.name.toLowerCase().includes(s)||u.phone.includes(s))
+      &&(!tf||u.type===tf);
   });
-  list.sort((a,b)=>{
-    if(sf==='newest') return b.id-a.id; if(sf==='oldest') return a.id-b.id;
-    if(sf==='highest') return b.amount-a.amount; if(sf==='lowest') return a.amount-b.amount;
-    if(sf==='name') return a.name.localeCompare(b.name); return 0;
+  L.sort((a,b)=>{
+    if(sf==='newest') return b.id-a.id;
+    if(sf==='oldest') return a.id-b.id;
+    if(sf==='highest') return tot(b).replace(/,/g,'')-tot(a).replace(/,/g,'');
+    if(sf==='lowest')  return tot(a).replace(/,/g,'')-tot(b).replace(/,/g,'');
+    if(sf==='name')    return a.name.localeCompare(b.name);
+    return 0;
   });
-  return list;
+  return L;
 }
 
-function renderStats() {
-  const all=utangList, pending=all.filter(u=>u.status!=='paid'), overdue=all.filter(u=>u.status==='overdue'), paid=all.filter(u=>u.status==='paid');
-  const sum=arr=>arr.reduce((s,u)=>s+u.amount+(u.interest||0),0);
-  document.getElementById('st-total').textContent='₱'+sum(all).toLocaleString();
-  document.getElementById('st-count').textContent=all.length+' tao';
-  document.getElementById('st-pending').textContent='₱'+sum(pending).toLocaleString();
-  document.getElementById('st-pcnt').textContent=pending.length+' utang';
-  document.getElementById('st-overdue').textContent='₱'+sum(overdue).toLocaleString();
-  document.getElementById('st-ocnt').textContent=overdue.length+' utang';
-  document.getElementById('st-paid').textContent='₱'+sum(paid).toLocaleString();
-  document.getElementById('st-paidcnt').textContent=paid.length+' utang';
-  document.getElementById('hdr-total').textContent='₱'+sum(pending).toLocaleString();
-  const banner=document.getElementById('banner');
-  if(overdue.length>0){banner.style.display='flex';document.getElementById('banner-txt').textContent=overdue.length+' overdue na utang';}
-  else banner.style.display='none';
+function renderStats(){
+  UL.forEach(chkOD);
+  const pend=UL.filter(u=>u.status!=='paid');
+  const over=UL.filter(u=>u.status==='overdue');
+  const paid=UL.filter(u=>u.status==='paid');
+  const sum=a=>a.reduce((s,u)=>s+u.amount+(u.interest||0),0);
+  el('st-total').textContent='₱'+sum(UL).toLocaleString();
+  el('st-count').textContent=UL.length+' tao';
+  el('st-pending').textContent='₱'+sum(pend).toLocaleString();
+  el('st-pcnt').textContent=pend.length+' utang';
+  el('st-overdue').textContent='₱'+sum(over).toLocaleString();
+  el('st-ocnt').textContent=over.length+' utang';
+  el('st-paid').textContent='₱'+sum(paid).toLocaleString();
+  el('st-paidcnt').textContent=paid.length+' utang';
+  el('hdr-total').textContent='₱'+sum(pend).toLocaleString();
+  const bn=el('banner');
+  if(over.length){ bn.style.display='flex'; el('banner-txt').textContent=over.length+' overdue na utang'; }
+  else bn.style.display='none';
 }
 
-function renderTable() {
-  const tbody=document.getElementById('tbody'), list=getList();
-  if(!list.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty"><div class="ei">🕊️</div><p>Wala pang records dito.<br>Mag-add ng bagong utang!</p></div></td></tr>`;renderStats();renderHist();return;}
+function renderTable(){
+  const tbody=el('tbody'), list=getList();
+  renderStats(); renderHist();
+  if(!list.length){
+    tbody.innerHTML=`<tr><td colspan="7"><div class="empty"><div class="ei">🕊️</div><p>Wala pang records dito.<br>Mag-add ng bagong utang!</p></div></td></tr>`;
+    return;
+  }
   tbody.innerHTML=list.map(u=>{
-    const total=u.amount+(u.interest||0), ip=u.status==='paid';
-    return `<tr class="${ip?'paid-row':''}">
-      <td colspan="7" style="padding:0">
-        <div class="mob-row-top">
-          <div><div class="nm">${u.name}</div><div class="ph">${u.phone}</div></div>
-          <span class="sbadge ${statClass[u.status]}">${statLabel[u.status]}</span>
-        </div>
-        <div class="mob-row-mid">
-          <span class="tbadge ${typeClass[u.type]}">${typeLabel[u.type]}</span>
-          <span class="amt ${ip?'paid-amt':'owed'}" style="font-size:.9rem">₱${total.toLocaleString()}</span>
-          ${u.interest>0?`<span class="int-note">+₱${u.interest} interes</span>`:''}
-          ${u.due?`<span style="font-size:.72rem;color:${u.status==='overdue'?'var(--danger)':'var(--text3)'};font-family:var(--mono)">Due: ${u.due}</span>`:''}
-        </div>
-        <div class="mob-row-bot">
-          <span style="font-size:.72rem;color:var(--text3);font-family:var(--mono)">${u.date||''}</span>
-          <div style="display:flex;gap:4px">
-            <button class="ac-btn ac-sms" title="Send SMS" onclick="openSMS(${u.id})">📱</button>
-            ${!ip?`<button class="ac-btn ac-pay" title="Markahan Bayad" onclick="markPaid(${u.id})">✅</button>`:''}
-            <button class="ac-btn ac-edit" title="I-edit" onclick="openEdit(${u.id})">✏️</button>
-            <button class="ac-btn ac-del" title="I-delete" onclick="del(${u.id})">🗑️</button>
-          </div>
+    const ip=u.status==='paid';
+    const amtStr='₱'+(u.amount+(u.interest||0)).toLocaleString();
+    const dc=u.status==='overdue'?'color:var(--danger)':'color:var(--text3)';
+    // mob-show spans: visible only on mobile inside td-t
+    const mobAmt=`<span class="mob-show amt ${ip?'paid-a':'owed'}" style="display:none">${amtStr}</span>`;
+    const mobInt=u.interest>0?`<span class="mob-show int-n" style="display:none">+₱${u.interest}</span>`:'';
+    const mobDue=u.due?`<span class="mob-show" style="display:none;font-size:.7rem;font-family:var(--mono);${dc}">Due: ${u.due}</span>`:'';
+    return `<tr class="${ip?'pr':''}">
+      <td class="td-n">
+        <div class="nm">${u.name}</div>
+        <div class="ph">${u.phone}</div>
+      </td>
+      <td class="td-t">
+        <span class="tbadge ${TC[u.type]}">${TL[u.type]}</span>
+        ${mobAmt}${mobInt}${mobDue}
+      </td>
+      <td class="td-a">
+        <div class="amt ${ip?'paid-a':'owed'}">${amtStr}</div>
+        ${u.interest>0?`<div class="int-n">+₱${u.interest} interes</div>`:''}
+      </td>
+      <td class="td-d1 td-d">${u.date||'—'}</td>
+      <td class="td-d2 td-d" style="${dc}">${u.due||'—'}</td>
+      <td class="td-s"><span class="sbadge ${SC[u.status]}">${SL[u.status]}</span></td>
+      <td class="td-ac">
+        <div class="ac-wrap">
+          <button class="ab sms"  title="Send SMS"        onclick="openSMS(${u.id})">📱</button>
+          ${!ip?`<button class="ab pay"  title="Bayad Na"       onclick="markPaid(${u.id})">✅</button>`:''}
+          <button class="ab edit" title="I-edit"           onclick="openEdit(${u.id})">✏️</button>
+          <button class="ab del"  title="I-delete"         onclick="del(${u.id})">🗑️</button>
         </div>
       </td>
     </tr>`;
   }).join('');
-  renderStats(); renderHist();
 }
 
-function renderHist() {
-  const hist=payHistory.slice(-20).reverse(), sec=document.getElementById('hist-section');
-  if(!hist.length){sec.style.display='none';return}
+/* ── HISTORY with individual delete ── */
+function renderHist(){
+  const sec=el('hist-section');
+  const hist=[...PH].reverse().slice(0,30);
+  if(!hist.length){ sec.style.display='none'; return; }
   sec.style.display='block';
-  document.getElementById('hist-list').innerHTML=hist.map(h=>`
-    <div class="hist-item"><div class="hist-icon">✅</div>
-    <div style="flex:1"><div class="hist-name">${h.name}</div><div class="hist-detail">${h.paidDate||h.date} · ${typeLabel[h.type]||h.type}${h.notes?` · ${h.notes}`:''}</div></div>
-    <div class="hist-amt">₱${(h.amount+(h.interest||0)).toLocaleString()}</div></div>`).join('');
+  el('hist-list').innerHTML=hist.map(h=>`
+    <div class="hi">
+      <div class="hi-icon">✅</div>
+      <div class="hi-body">
+        <div class="hi-name">${h.name}</div>
+        <div class="hi-det">${h.paidDate||h.date||'?'} · ${TL[h.type]||h.type}${h.notes?' · '+h.notes:''}</div>
+      </div>
+      <div class="hi-right">
+        <div class="hi-amt">₱${(h.amount+(h.interest||0)).toLocaleString()}</div>
+        <button class="ab del" title="I-delete ang history na ito" onclick="delHist('${h.histId}')">🗑️</button>
+      </div>
+    </div>`).join('');
 }
 
-// ===== ACTIONS =====
-function openAdd() {
+function delHist(hid){
+  confirm2('I-delete ang History?','Burahin ang payment record na ito? Hindi na maibabalik.',async()=>{
+    PH=PH.filter(h=>h.histId!==hid);
+    toast('Na-delete ang history record!','in');
+    await save(); renderHist();
+  });
+}
+
+/* ── CRUD ── */
+function openAdd(){
   editId=null;
-  document.getElementById('modal-title').textContent='➕ Bagong Utang';
-  ['f-name','f-phone','f-amount','f-interest','f-notes'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('f-txn').value='cash';
-  document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
-  document.getElementById('f-due').value='';
-  openOverlay('add-overlay');
+  el('mtitle').textContent='➕ Bagong Utang';
+  ['f-name','f-phone','f-amount','f-interest','f-notes'].forEach(id=>el(id).value='');
+  el('f-txn').value='cash'; el('f-date').value=today(); el('f-due').value='';
+  openOv('add-ov');
 }
-function openEdit(id) {
-  const u=utangList.find(x=>x.id===id); if(!u) return;
+function openEdit(id){
+  const u=UL.find(x=>x.id===id); if(!u) return;
   editId=id;
-  document.getElementById('modal-title').textContent='✏️ I-edit ang Utang';
-  document.getElementById('f-name').value=u.name;
-  document.getElementById('f-phone').value=u.phone;
-  document.getElementById('f-amount').value=u.amount;
-  document.getElementById('f-txn').value=u.type;
-  document.getElementById('f-date').value=u.date||'';
-  document.getElementById('f-due').value=u.due||'';
-  document.getElementById('f-interest').value=u.interest||'';
-  document.getElementById('f-notes').value=u.notes||'';
-  openOverlay('add-overlay');
+  el('mtitle').textContent='✏️ I-edit ang Utang';
+  el('f-name').value=u.name; el('f-phone').value=u.phone; el('f-amount').value=u.amount;
+  el('f-txn').value=u.type; el('f-date').value=u.date||''; el('f-due').value=u.due||'';
+  el('f-interest').value=u.interest||''; el('f-notes').value=u.notes||'';
+  openOv('add-ov');
 }
-async function saveEntry() {
-  const name=document.getElementById('f-name').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const amount=parseFloat(document.getElementById('f-amount').value);
-  if(!name){toast('Lagyan ng pangalan!','err');return}
-  if(!phone||phone.length<10){toast('Tamang numero ng telepono!','err');return}
-  if(!amount||amount<=0){toast('Lagyan ng tamang halaga!','err');return}
-  const obj={id:editId||Date.now(),name,phone,amount,type:document.getElementById('f-txn').value,date:document.getElementById('f-date').value,due:document.getElementById('f-due').value,interest:parseFloat(document.getElementById('f-interest').value)||0,notes:document.getElementById('f-notes').value.trim(),status:'pending'};
+async function saveEntry(){
+  const name=v('f-name').trim(), phone=v('f-phone').trim(), amount=parseFloat(v('f-amount'));
+  if(!name){toast('Lagyan ng pangalan!','er');return}
+  if(!phone||phone.length<10){toast('Tamang numero ng telepono!','er');return}
+  if(!amount||amount<=0){toast('Lagyan ng tamang halaga!','er');return}
+  const obj={
+    id:editId||Date.now(),name,phone,amount,
+    type:v('f-txn'),date:v('f-date'),due:v('f-due'),
+    interest:parseFloat(v('f-interest'))||0,
+    notes:v('f-notes').trim(),status:'pending'
+  };
   if(obj.due&&new Date(obj.due)<new Date()) obj.status='overdue';
-  if(editId){const idx=utangList.findIndex(x=>x.id===editId);obj.status=utangList[idx].status==='paid'?'paid':obj.status;utangList[idx]=obj;toast(`Na-update na si ${name}!`,'ok');}
-  else{utangList.push(obj);toast(`Na-record ang utang ni ${name}!`,'ok');}
-  await save(); closeOverlay('add-overlay'); renderTable();
+  if(editId){
+    const i=UL.findIndex(x=>x.id===editId);
+    if(UL[i].status==='paid'){obj.status='paid';obj.paidDate=UL[i].paidDate;}
+    else obj.status=obj.status;
+    UL[i]=obj; toast(`Na-update na si ${name}!`,'ok');
+  } else { UL.push(obj); toast(`Na-record ang utang ni ${name}!`,'ok'); }
+  await save(); closeOv('add-ov'); renderTable();
 }
-function markPaid(id) {
+function markPaid(id){
   confirm2('Markahan bilang Bayad?','Sigurado ka bang nagbayad na?',async()=>{
-    const u=utangList.find(x=>x.id===id); if(!u) return;
-    u.status='paid';
-    u.paidDate=new Date().toISOString().split('T')[0];
-    payHistory.push({...u});
+    const u=UL.find(x=>x.id===id); if(!u) return;
+    u.status='paid'; u.paidDate=today();
+    PH.push({...u,histId:Date.now().toString()+'_'+Math.random().toString(36).slice(2)});
     toast(`Salamat! Bayad na si ${u.name} ✅`,'ok');
-    await save();
-    renderTable();
+    await save(); renderTable();
   });
 }
-function del(id) {
-  const u=utangList.find(x=>x.id===id); if(!u) return;
+function del(id){
+  const u=UL.find(x=>x.id===id); if(!u) return;
   confirm2('I-delete?',`Burahin ang utang ni <strong>${u.name}</strong>?`,async()=>{
-    utangList=utangList.filter(x=>x.id!==id);
-    toast('Na-delete na!','info');
-    await save();
-    renderTable();
+    UL=UL.filter(x=>x.id!==id);
+    toast('Na-delete na!','in'); await save(); renderTable();
   });
 }
 
-// ===== SMS =====
-function openSMS(id) {
-  curSMSId=id; const u=utangList.find(x=>x.id===id); if(!u) return;
-  document.getElementById('sms-to').value=u.name;
-  document.getElementById('sms-ph').value=u.phone;
-
-  // Default template based on status
-  if(u.status==='paid') {
-    document.getElementById('sms-tmpl').value='thankyou';
-  } else if(u.status==='overdue') {
-    document.getElementById('sms-tmpl').value='overdue';
-  } else {
-    document.getElementById('sms-tmpl').value='reminder';
-  }
-
-  applyTmpl(); openOverlay('sms-overlay');
+/* ── SMS ── */
+function openSMS(id){
+  curSMSId=id;
+  const u=UL.find(x=>x.id===id); if(!u) return;
+  el('sms-to').value=u.name; el('sms-ph').value=u.phone;
+  const sel=el('sms-tmpl');
+  sel.value=u.status==='paid'?'thankyou':u.status==='overdue'?'overdue':'reminder';
+  applyTmpl(); openOv('sms-ov');
 }
-function applyTmpl() {
-  const u=utangList.find(x=>x.id===curSMSId); if(!u) return;
-  const t=document.getElementById('sms-tmpl').value;
-  // For paid users, pass paidDate if available
-  const uWithPaid = {...u, paidDate: u.paidDate || new Date().toISOString().split('T')[0]};
-  document.getElementById('sms-msg').value=t==='custom'?'':(tmpl[t]?tmpl[t](uWithPaid):'');
+function applyTmpl(){
+  const u=UL.find(x=>x.id===curSMSId); if(!u) return;
+  const t=v('sms-tmpl'), ux={...u,paidDate:u.paidDate||today()};
+  el('sms-msg').value=t==='custom'?'':(T[t]?T[t](ux):'');
   updChar();
 }
-function updChar() {
-  const msg=document.getElementById('sms-msg').value;
-  document.getElementById('sms-chars').textContent=msg.length;
-  document.getElementById('sms-prev').textContent='📱 Preview: '+msg;
+function updChar(){
+  const msg=v('sms-msg');
+  el('sms-chars').textContent=msg.length;
+  el('sms-prev').textContent=msg||'(walang mensahe)';
 }
-async function sendViaSemaphore() {
-  const phone=document.getElementById('sms-ph').value.trim(), msg=document.getElementById('sms-msg').value.trim(), name=document.getElementById('sms-to').value.trim();
-  if(!msg){toast('Lagyan ng mensahe!','err');return} if(!phone){toast('Walang numero!','err');return}
-  window.location.href=`sms:${phone}${/iPhone|iPad|iPod/i.test(navigator.userAgent)?'&':'?'}body=${encodeURIComponent(msg)}`;
+function sendSMS(){
+  const phone=v('sms-ph').trim(), msg=v('sms-msg').trim(), name=v('sms-to').trim();
+  if(!msg){toast('Lagyan ng mensahe!','er');return}
+  if(!phone){toast('Walang numero!','er');return}
+  const sep=/iPhone|iPad|iPod/i.test(navigator.userAgent)?'&':'?';
+  window.location.href=`sms:${phone}${sep}body=${encodeURIComponent(msg)}`;
   toast(`Binuksan ang SMS app para kay ${name} 📲`,'ok');
-  setTimeout(()=>closeOverlay('sms-overlay'),1000);
+  setTimeout(()=>closeOv('sms-ov'),800);
 }
-function copySMS() {
-  const msg=document.getElementById('sms-msg').value;
-  if(!msg){toast('Wala pang mensahe!','err');return}
+function copySMS(){
+  const msg=v('sms-msg');
+  if(!msg){toast('Wala pang mensahe!','er');return}
   navigator.clipboard.writeText(msg).then(()=>toast('Nakopya ang mensahe! 📋','ok'));
 }
-function openBlast(overdueOnly) {
-  const list=overdueOnly?utangList.filter(u=>u.status==='overdue'):utangList.filter(u=>u.status!=='paid');
-  if(!list.length){toast(overdueOnly?'Walang overdue!':'Walang pending na utang!','info');return}
+function openBlast(odOnly){
+  const list=odOnly?UL.filter(u=>u.status==='overdue'):UL.filter(u=>u.status!=='paid');
+  if(!list.length){toast(odOnly?'Walang overdue!':'Walang pending na utang!','in');return}
   blastQ=list; blastIdx=0;
-  document.getElementById('blast-list').innerHTML=list.map(u=>`<div style="padding:8px 11px;border-radius:8px;background:var(--surface2);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border)"><div><strong>${u.name}</strong><span style="font-family:var(--mono);font-size:.72rem;color:var(--text3);margin-left:8px">${u.phone}</span></div><span style="color:${u.status==='overdue'?'var(--danger)':'var(--warn)'};font-size:.72rem;font-weight:700">${u.status.toUpperCase()}</span></div>`).join('');
-  if(overdueOnly) document.getElementById('blast-tmpl').value='overdue';
-  updBlastPrev(); document.getElementById('blast-btn').textContent=`📲 Send SMS (${list.length} tao)`; openOverlay('blast-overlay');
+  el('blast-list').innerHTML=list.map(u=>`
+    <div style="padding:8px 11px;border-radius:8px;background:var(--surface2);margin-bottom:6px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <div><strong>${u.name}</strong><span style="font-family:var(--mono);font-size:.72rem;color:var(--text3);margin-left:8px">${u.phone}</span></div>
+      <span style="color:${u.status==='overdue'?'var(--danger)':'var(--warn)'};font-size:.72rem;font-weight:700">${u.status.toUpperCase()}</span>
+    </div>`).join('');
+  if(odOnly) el('blast-tmpl').value='overdue';
+  updBlastPrev();
+  el('blast-btn').textContent=`📲 Send SMS (${list.length} tao)`;
+  openOv('blast-ov');
 }
-function updBlastPrev() {
-  const t=document.getElementById('blast-tmpl').value, sample=blastQ[0]; if(!sample) return;
-  document.getElementById('blast-prev').textContent='📱 Preview: '+tmpl[t](sample);
+function updBlastPrev(){
+  const t=v('blast-tmpl'), s=blastQ[0]; if(!s) return;
+  el('blast-prev').textContent=T[t](s);
 }
-function blastNext() {
-  if(blastIdx>=blastQ.length){toast('Tapos na ang blast! 🎉','ok');closeOverlay('blast-overlay');blastIdx=0;return;}
-  const u=blastQ[blastIdx], t=document.getElementById('blast-tmpl').value, msg=tmpl[t](u);
-  window.location.href=`sms:${u.phone}${/iPhone|iPad|iPod/i.test(navigator.userAgent)?'&':'?'}body=${encodeURIComponent(msg)}`;
-  blastIdx++; const rem=blastQ.length-blastIdx;
-  if(rem>0){document.getElementById('blast-btn').textContent=`📲 Susunod (${rem} pa)`;toast(`Binuksan para kay ${u.name} (${blastIdx}/${blastQ.length})`,'info');}
-  else{document.getElementById('blast-btn').textContent='✅ Tapos Na!';toast('Lahat ng SMS nabuksan na! 🎉','ok');}
+function blastNext(){
+  if(blastIdx>=blastQ.length){toast('Tapos na ang blast! 🎉','ok');closeOv('blast-ov');blastIdx=0;return;}
+  const u=blastQ[blastIdx], msg=T[v('blast-tmpl')](u);
+  const sep=/iPhone|iPad|iPod/i.test(navigator.userAgent)?'&':'?';
+  window.location.href=`sms:${u.phone}${sep}body=${encodeURIComponent(msg)}`;
+  blastIdx++;
+  const rem=blastQ.length-blastIdx;
+  if(rem>0){ el('blast-btn').textContent=`📲 Susunod (${rem} pa)`; toast(`Binuksan para kay ${u.name} (${blastIdx}/${blastQ.length})`,'in'); }
+  else { el('blast-btn').textContent='✅ Tapos Na!'; toast('Lahat ng SMS nabuksan na! 🎉','ok'); }
 }
 
-// ===== TABS / MODAL / TOAST =====
-function switchTab(tab,el){curTab=tab;document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));el.classList.add('on');renderTable();}
-function openOverlay(id){document.getElementById(id).classList.add('on')}
-function closeOverlay(id){document.getElementById(id).classList.remove('on')}
+/* ── TABS / MODALS / TOASTS ── */
+function switchTab(tab,e){
+  curTab=tab;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  e.classList.add('on'); renderTable();
+}
+function openOv(id){ el(id).classList.add('on') }
+function closeOv(id){ el(id).classList.remove('on') }
 let confCb=null;
-function confirm2(title,msg,cb){document.getElementById('conf-title').textContent=title;document.getElementById('conf-msg').innerHTML=msg;confCb=cb;openOverlay('confirm-overlay');}
-document.getElementById('conf-ok').onclick=()=>{if(confCb)confCb();closeOverlay('confirm-overlay');confCb=null;};
-document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('on')}));
+function confirm2(title,msg,cb){
+  el('conf-title').textContent=title;
+  el('conf-msg').innerHTML=msg;
+  confCb=cb; openOv('conf-ov');
+}
+el('conf-ok').onclick=()=>{ if(confCb)confCb(); closeOv('conf-ov'); confCb=null; };
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{ if(e.target===o) o.classList.remove('on') }));
 document.addEventListener('keydown',e=>{
   if(e.key==='n'&&!e.ctrlKey&&!e.metaKey&&!document.querySelector('.overlay.on')) openAdd();
   if(e.key==='Escape') document.querySelectorAll('.overlay.on').forEach(m=>m.classList.remove('on'));
 });
 function toast(msg,type='ok'){
-  const c=document.getElementById('toasts'),el=document.createElement('div');
-  el.className=`toast ${type}`;
-  el.innerHTML=`<span class="ti">${{ok:'✅',err:'❌',info:'ℹ️'}[type]||'ℹ️'}</span><span>${msg}</span>`;
-  c.appendChild(el); setTimeout(()=>el.remove(),3500);
+  const c=el('toasts'), d=document.createElement('div');
+  d.className=`toast ${type}`;
+  d.innerHTML=`<span class="ti">${{ok:'✅',er:'❌',in:'ℹ️'}[type]||'ℹ️'}</span><span>${msg}</span>`;
+  c.appendChild(d); setTimeout(()=>d.remove(),3500);
 }
 
-checkSession();
+checkSess();
 loadData();
 </script>
 </body>

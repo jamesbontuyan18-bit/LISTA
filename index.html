@@ -407,21 +407,22 @@ async function placeOrder(){
   const nt=document.getElementById('om-note').value.trim();
   if(!nm){toast('Lagyan ng pangalan!','er');return;}
   if(!ph||ph.length<10||!/^09/.test(ph)){toast('Tamang numero! (09XXXXXXXXX)','er');return;}
-  // Show loading state
   const sbtn=document.querySelector('#ov-order .btn-g');
-  if(sbtn){sbtn.disabled=true;sbtn.textContent='Sending...';}
-  ldO();
+  if(sbtn){sbtn.disabled=true;sbtn.innerHTML='&#128337; Sending...';}
+  // CRITICAL: fetch existing orders from cloud first to avoid overwriting others
+  const cloudOrds=await syncFromCloud();
+  if(cloudOrds!==null) ords=cloudOrds; // use cloud as source of truth
+  else ldO(); // fallback to local if no internet
   const o={id:genId(),name:nm,phone:ph,promo:curP.name,net:curP.net,nc:curP.nc,val:curP.val,price:curP.price,orig:curP.orig,icon:curP.icon,payMethod:payM,note:nt,status:'pending',adminNote:'',createdAt:now(),updatedAt:now()};
-  ords.unshift(o);
+  ords.unshift(o); // add new order on top
   localStorage.setItem(OK,JSON.stringify(ords));
   updDot();
-  // Await sync so we know if it worked
   const ok=await syncToCloud(ords);
   if(sbtn){sbtn.disabled=false;sbtn.innerHTML='&#128228; I-submit ang Order';}
   cov('ov-order');
   document.getElementById('suc-id').textContent=o.id;
   ov('ov-suc');
-  if(ok) toast('Order submitted & synced to cloud!','ok');
+  if(ok) toast('Order submitted & synced!','ok');
   else toast('Order saved locally. Walang internet?','in');
 }
 function goTrack(){const id=document.getElementById('suc-id').textContent;cov('ov-suc');gp('track');document.getElementById('track-inp').value=id;doTrack();}

@@ -290,9 +290,55 @@ td{padding:10px 13px;font-size:.8rem;vertical-align:middle}
 <div id="toasts"></div>
 
 <script>
-const OK='jh-orders',AS='jh-admin-sess',AU='admin',AP='jamesHope2024';
-const SELLER='09655971528';
-let ords=[],curP=null,payM='gcash',viewId=null;
+// ═══ CONFIG ═══
+const OK='jh-orders', BIN_KEY_K='jh-bin-id';
+const AS='jh-admin-sess', AU='admin', AP='itsmehope';
+// JSONBin API key (same as Lista ni Boss)
+const JKEY='$2a$10$g2lVJd07m0cutlfVI7W7XebVCAQ34rtVOLCgQrwaXcx2NPl8ky2bO';
+
+let ords=[], curP=null, payM='gcash', viewId=null;
+let syncing=false, binId=localStorage.getItem(BIN_KEY_K)||null;
+
+// ═══ CLOUD SYNC ═══
+async function getBinId(){
+  if(binId) return binId;
+  // Auto-create bin on first use
+  try{
+    const r=await fetch('https://api.jsonbin.io/v3/b',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Master-Key':JKEY,'X-Bin-Name':'promoload-orders','X-Private':'false'},
+      body:JSON.stringify({orders:[]})
+    });
+    const d=await r.json();
+    binId=d.metadata?.id||null;
+    if(binId){localStorage.setItem(BIN_KEY_K,binId);console.log('Bin created:',binId);}
+  }catch(e){console.warn('Bin create failed:',e);}
+  return binId;
+}
+
+async function syncToCloud(data){
+  const id=await getBinId();
+  if(!id)return;
+  try{
+    await fetch('https://api.jsonbin.io/v3/b/'+id,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':JKEY},
+      body:JSON.stringify({orders:data})
+    });
+  }catch(e){console.warn('Sync failed:',e);}
+}
+
+async function syncFromCloud(){
+  const id=await getBinId();
+  if(!id)return null;
+  try{
+    const r=await fetch('https://api.jsonbin.io/v3/b/'+id+'/latest',{
+      headers:{'X-Master-Key':JKEY}
+    });
+    const d=await r.json();
+    return d.record?.orders||null;
+  }catch(e){console.warn('Fetch failed:',e);return null;}
+}
 const LOADS=[10,15,20,30,50,100,115,300,500,1000];
 const OPROMO=[
   {n:'GoSURF50',net:'Smart',val:'3 Days',p:50,i:'&#127760;',bg:'rgba(0,112,255,.12)',d:'1.5GB Data · 3 Days'},
@@ -305,8 +351,33 @@ const OPROMO=[
   {n:'GoLIFE149',net:'Smart',val:'15 Days',p:149,i:'&#128640;',bg:'rgba(0,229,160,.1)',d:'5GB + Unli All · 15 Days'},
 ];
 
-function ldO(){try{ords=JSON.parse(localStorage.getItem(OK)||'[]');}catch(e){ords=[];}}
-function svO(){localStorage.setItem(OK,JSON.stringify(ords));updDot();}
+function ldO(){
+  try{ords=JSON.parse(localStorage.getItem(OK)||'[]');}catch(e){ords=[];}
+}
+function svO(){
+  localStorage.setItem(OK,JSON.stringify(ords));
+  updDot();
+  syncToCloud(ords); // fire and forget
+}
+async function ldFromCloud(){
+  showSyncBadge(true);
+  const cloud=await syncFromCloud();
+  if(cloud&&cloud.length>=0){
+    ords=cloud;
+    localStorage.setItem(OK,JSON.stringify(ords));
+  } else {
+    ldO();
+  }
+  showSyncBadge(false);
+  updDot();
+}
+function showSyncBadge(on){
+  let b=document.getElementById('sync-badge');
+  if(!b){b=document.createElement('div');b.id='sync-badge';b.style.cssText='position:fixed;bottom:18px;left:18px;z-index:9999;background:var(--s1);border:1.5px solid var(--g2);border-radius:10px;padding:9px 14px;font-size:.76rem;color:var(--g2);display:flex;align-items:center;gap:7px;box-shadow:0 4px 16px rgba(0,0,0,.4);transition:opacity .3s';document.body.appendChild(b);}
+  b.style.opacity=on?'1':'0';
+  b.innerHTML=on?'<span style="animation:blink .8s infinite">&#9632;</span> Syncing...':'&#9989; Synced!';
+  if(!on)setTimeout(()=>b.style.opacity='0',1800);
+}
 function genId(){return 'JH-'+Date.now();}
 function now(){return new Date().toISOString();}
 function fmt(iso){if(!iso)return '—';const d=new Date(iso);return d.toLocaleDateString('fil-PH',{month:'short',day:'numeric',year:'numeric'})+' '+d.toLocaleTimeString('fil-PH',{hour:'2-digit',minute:'2-digit'});}
@@ -374,7 +445,9 @@ function doLogin(){
 function doLogout(){sessionStorage.removeItem(AS);document.getElementById('al-wrap').style.display='flex';document.getElementById('adash').style.display='none';}
 function initAdmin(){if(sessionStorage.getItem(AS)==='1')showDash();}
 function showDash(){document.getElementById('al-wrap').style.display='none';document.getElementById('adash').style.display='block';rAdmin();}
-function rAdmin(){ldO();rDash();rOrders();rCusts();updDot();}
+function rAdmin(){
+  ldFromCloud().then(()=>{rDash();rOrders();rCusts();});
+}
 
 function sp(n,btn){document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.ab').forEach(b=>b.classList.remove('on'));document.getElementById('panel-'+n).classList.add('on');if(btn)btn.classList.add('on');}
 
@@ -439,6 +512,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelect
 function toast(msg,t='ok'){const c=document.getElementById('toasts'),d=document.createElement('div');d.className='toast '+t;d.innerHTML='<span class="ti">'+({ok:'&#9989;',er:'&#10060;',in:'&#8505;'}[t]||'&#8505;')+'</span><span>'+msg+'</span>';c.appendChild(d);setTimeout(()=>d.remove(),3200);}
 
 ldO();renderShop();updDot();
+// Pre-fetch bin ID silently so first order is fast
+getBinId();
 </script>
 </body>
 </html>

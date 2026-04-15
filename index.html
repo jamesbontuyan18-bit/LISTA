@@ -292,7 +292,7 @@ td{padding:10px 13px;font-size:.8rem;vertical-align:middle}
 <script>
 // ═══ CONFIG ═══
 const OK='jh-orders';
-const AS='jh-admin-sess', AU='admin', AP='itsmehope';
+const AS='jh-admin-sess', AU='admin', AP='jamesHope2024';
 const JKEY='$2a$10$g2lVJd07m0cutlfVI7W7XebVCAQ34rtVOLCgQrwaXcx2NPl8ky2bO';
 const BIN_ID='69df32c9aaba882197feab41'; // hardcoded — same bin for all devices
 
@@ -301,12 +301,20 @@ let ords=[], curP=null, payM='gcash', viewId=null;
 // ═══ CLOUD SYNC ═══
 async function syncToCloud(data){
   try{
-    await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID,{
+    const r=await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID,{
       method:'PUT',
       headers:{'Content-Type':'application/json','X-Master-Key':JKEY},
       body:JSON.stringify({orders:data})
     });
-  }catch(e){console.warn('Sync to cloud failed:',e);}
+    const d=await r.json();
+    if(d.metadata||d.record) return true;
+    console.warn('Sync response:', d);
+    toast('Cloud sync failed: '+JSON.stringify(d).slice(0,60),'er');
+    return false;
+  }catch(e){
+    toast('Cloud sync error: '+e.message,'er');
+    return false;
+  }
 }
 
 async function syncFromCloud(){
@@ -315,8 +323,13 @@ async function syncFromCloud(){
       headers:{'X-Master-Key':JKEY}
     });
     const d=await r.json();
-    return d.record?.orders||null;
-  }catch(e){console.warn('Fetch from cloud failed:',e);return null;}
+    if(d.record) return d.record.orders||[];
+    toast('Cloud read failed: '+JSON.stringify(d).slice(0,60),'er');
+    return null;
+  }catch(e){
+    toast('Cloud read error: '+e.message,'er');
+    return null;
+  }
 }
 const LOADS=[10,15,20,30,50,100,115,300,500,1000];
 const OPROMO=[
@@ -336,7 +349,7 @@ function ldO(){
 function svO(){
   localStorage.setItem(OK,JSON.stringify(ords));
   updDot();
-  syncToCloud(ords); // fire and forget
+  syncToCloud(ords); // for admin status updates
 }
 async function ldFromCloud(){
   showSyncBadge(true);
@@ -388,19 +401,28 @@ function openOrd(pr){
 }
 function sPay(m,el){payM=m;document.querySelectorAll('.pay-opt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');}
 
-function placeOrder(){
+async function placeOrder(){
   const nm=document.getElementById('om-cn').value.trim();
   const ph=document.getElementById('om-ph').value.trim();
   const nt=document.getElementById('om-note').value.trim();
   if(!nm){toast('Lagyan ng pangalan!','er');return;}
   if(!ph||ph.length<10||!/^09/.test(ph)){toast('Tamang numero! (09XXXXXXXXX)','er');return;}
+  // Show loading state
+  const sbtn=document.querySelector('#ov-order .btn-g');
+  if(sbtn){sbtn.disabled=true;sbtn.textContent='Sending...';}
   ldO();
   const o={id:genId(),name:nm,phone:ph,promo:curP.name,net:curP.net,nc:curP.nc,val:curP.val,price:curP.price,orig:curP.orig,icon:curP.icon,payMethod:payM,note:nt,status:'pending',adminNote:'',createdAt:now(),updatedAt:now()};
-  ords.unshift(o);svO();
+  ords.unshift(o);
+  localStorage.setItem(OK,JSON.stringify(ords));
+  updDot();
+  // Await sync so we know if it worked
+  const ok=await syncToCloud(ords);
+  if(sbtn){sbtn.disabled=false;sbtn.innerHTML='&#128228; I-submit ang Order';}
   cov('ov-order');
   document.getElementById('suc-id').textContent=o.id;
   ov('ov-suc');
-  toast('Order submitted! ','ok');
+  if(ok) toast('Order submitted & synced to cloud!','ok');
+  else toast('Order saved locally. Walang internet?','in');
 }
 function goTrack(){const id=document.getElementById('suc-id').textContent;cov('ov-suc');gp('track');document.getElementById('track-inp').value=id;doTrack();}
 

@@ -291,53 +291,32 @@ td{padding:10px 13px;font-size:.8rem;vertical-align:middle}
 
 <script>
 // ═══ CONFIG ═══
-const OK='jh-orders', BIN_KEY_K='jh-bin-id';
+const OK='jh-orders';
 const AS='jh-admin-sess', AU='admin', AP='itsmehope';
-// JSONBin API key (same as Lista ni Boss)
 const JKEY='$2a$10$g2lVJd07m0cutlfVI7W7XebVCAQ34rtVOLCgQrwaXcx2NPl8ky2bO';
+const BIN_ID='69df32c9aaba882197feab41'; // hardcoded — same bin for all devices
 
 let ords=[], curP=null, payM='gcash', viewId=null;
-let syncing=false, binId=localStorage.getItem(BIN_KEY_K)||null;
 
 // ═══ CLOUD SYNC ═══
-async function getBinId(){
-  if(binId) return binId;
-  // Auto-create bin on first use
-  try{
-    const r=await fetch('https://api.jsonbin.io/v3/b',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-Master-Key':JKEY,'X-Bin-Name':'promoload-orders','X-Private':'false'},
-      body:JSON.stringify({orders:[]})
-    });
-    const d=await r.json();
-    binId=d.metadata?.id||null;
-    if(binId){localStorage.setItem(BIN_KEY_K,binId);console.log('Bin created:',binId);}
-  }catch(e){console.warn('Bin create failed:',e);}
-  return binId;
-}
-
 async function syncToCloud(data){
-  const id=await getBinId();
-  if(!id)return;
   try{
-    await fetch('https://api.jsonbin.io/v3/b/'+id,{
+    await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID,{
       method:'PUT',
       headers:{'Content-Type':'application/json','X-Master-Key':JKEY},
       body:JSON.stringify({orders:data})
     });
-  }catch(e){console.warn('Sync failed:',e);}
+  }catch(e){console.warn('Sync to cloud failed:',e);}
 }
 
 async function syncFromCloud(){
-  const id=await getBinId();
-  if(!id)return null;
   try{
-    const r=await fetch('https://api.jsonbin.io/v3/b/'+id+'/latest',{
+    const r=await fetch('https://api.jsonbin.io/v3/b/'+BIN_ID+'/latest',{
       headers:{'X-Master-Key':JKEY}
     });
     const d=await r.json();
     return d.record?.orders||null;
-  }catch(e){console.warn('Fetch failed:',e);return null;}
+  }catch(e){console.warn('Fetch from cloud failed:',e);return null;}
 }
 const LOADS=[10,15,20,30,50,100,115,300,500,1000];
 const OPROMO=[

@@ -167,9 +167,14 @@ td{padding:10px 13px;font-size:.8rem;vertical-align:middle}
   <div class="wrap">
     <div class="sec-hd"><div class="sec-lbl">&#128293; Special Discount</div><h2>Exclusive Promo Packages</h2><p>Regular price &#8369;99 &mdash; kayo bayad ng <b style="color:var(--g1)">&#8369;70 lang!</b></p></div>
     <div class="pgrid">
-      <div class="pc sm" onclick="openOrd({name:'POWER ALL 99',net:'Smart Only',nc:'smart',val:'7 Days',price:70,orig:99,icon:'&#128246;',feats:['10GB Shareable Data','Unli Facebook &amp; TikTok','Unli Call &amp; Text','7 Days Validity']})">
+      <div class="pc sm" onclick="openOrd({name:'PowerAll FB 99',net:'Smart Only',nc:'smart',val:'7 Days',price:70,orig:99,icon:'&#128153;',feats:['10GB Shareable Data','Unli Facebook','Unli Call &amp; Text','7 Days Validity']})">
         <div class="pc-glow"></div>
-        <div class="pc-top"><div class="pc-badges"><span class="ntag sm-t">&#128246; Smart</span><span class="sale-t">SAVE &#8369;29</span></div><div class="pname">POWER ALL 99</div><div class="pinfo">7 Days &middot; Smart Users Only</div><ul class="pfeats"><li><b>10GB</b> Shareable Data</li><li><b>Unli</b> Facebook &amp; TikTok</li><li><b>Unli</b> Call &amp; Text</li><li><b>7 Days</b> Validity</li></ul></div>
+        <div class="pc-top"><div class="pc-badges"><span class="ntag sm-t">&#128246; Smart</span><span class="sale-t">SAVE &#8369;29</span></div><div class="pname">PowerAll <span style="color:#1877f2">FB</span> 99</div><div class="pinfo">7 Days &middot; Smart Users Only</div><ul class="pfeats"><li><b>10GB</b> Shareable Data</li><li><b>Unli</b> Facebook</li><li><b>Unli</b> Call &amp; Text</li><li><b>7 Days</b> Validity</li></ul></div>
+        <div class="pc-bot"><div><div style="display:flex;align-items:baseline;gap:7px"><span class="pold">&#8369;99</span><span class="pnew">&#8369;70</span></div><div class="psave">Matitipid ng &#8369;29!</div></div><button class="obtn">Order Na &#8594;</button></div>
+      </div>
+      <div class="pc sm" onclick="openOrd({name:'PowerAll TikTok 99',net:'Smart Only',nc:'smart',val:'7 Days',price:70,orig:99,icon:'&#127926;',feats:['10GB Shareable Data','Unli TikTok','Unli Call &amp; Text','7 Days Validity']})">
+        <div class="pc-glow"></div>
+        <div class="pc-top"><div class="pc-badges"><span class="ntag sm-t">&#128246; Smart</span><span class="sale-t">SAVE &#8369;29</span></div><div class="pname">PowerAll <span style="color:#fe2c55">TikTok</span> 99</div><div class="pinfo">7 Days &middot; Smart Users Only</div><ul class="pfeats"><li><b>10GB</b> Shareable Data</li><li><b>Unli</b> TikTok</li><li><b>Unli</b> Call &amp; Text</li><li><b>7 Days</b> Validity</li></ul></div>
         <div class="pc-bot"><div><div style="display:flex;align-items:baseline;gap:7px"><span class="pold">&#8369;99</span><span class="pnew">&#8369;70</span></div><div class="psave">Matitipid ng &#8369;29!</div></div><button class="obtn">Order Na &#8594;</button></div>
       </div>
       <div class="pc tn" onclick="openOrd({name:'SAYA ALL 99',net:'TNT Only',nc:'tnt',val:'7 Days',price:70,orig:99,icon:'&#128246;',feats:['6GB Shareable Data','Unli FB, ML &amp; TikTok','Unli Call &amp; Text','7 Days Validity']})">
@@ -285,7 +290,7 @@ td{padding:10px 13px;font-size:.8rem;vertical-align:middle}
 <div id="toasts"></div>
 
 <script>
-const OK='jh-orders',AS='jh-admin-sess',AU='itsmehope',AP='itsmehope';
+const OK='jh-orders',AS='jh-admin-sess',AU='admin',AP='jamesHope2024';
 const SELLER='09655971528';
 let ords=[],curP=null,payM='gcash',viewId=null;
 const LOADS=[10,15,20,30,50,100,115,300,500,1000];
